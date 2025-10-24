@@ -1,0 +1,510 @@
+commit 026136270dc27496833573d12a3d3028464ea631
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sat Sep 27 07:53:23 2025 +0530
+
+    feat:  added mood tracking in hourly timeline
+    added timeline shortcut
+    hourly chanking model redesign to accomodate mood trackings with controllers and services changing, still have to add the per user separation and file handling for bulk uploads
+
+commit 67f9aaeb1743cfabed0efbb33c4015fd5771fa21
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Fri Sep 26 23:53:03 2025 +0530
+
+    push
+
+commit 2fd884646a6f03724a4f2d0f1cac9ba811510189
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Fri Sep 26 23:41:08 2025 +0530
+
+    push
+
+commit 1c71b9ad85642e5ab079927fce7edcdc1abf16ce
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Fri Sep 19 08:48:46 2025 +0530
+
+    fix: urge loggin\
+    fix: timeline checkin loggin\
+
+commit 95eb148bc514364b6962c86c50204965296b9f5d
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Sep 16 22:40:49 2025 +0530
+
+    added prolonged sitting remiders
+
+commit 465f4154e16d0d188886f27d6c2e8f1e9f18a9e5
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Sep 16 13:19:03 2025 +0530
+
+    notifs resumed
+
+commit 41aef1e9f650c12a0b5bb1ecad054b5e9ef5d254
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Sep 9 22:22:38 2025 +0530
+
+    check laptop cron paused
+
+commit b97fc9a44f27a46f878666860edd93274060d2bd
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Sep 9 12:32:08 2025 +0530
+
+    adjusted cron and paused missed failed notification
+
+commit ea75bb6cc2ed04acd3eb40788cc481c24ad8563c
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sat Sep 6 00:26:34 2025 +0530
+
+    embeds adjusted to send only content
+
+commit 7017a5a1c9012dd2c6946b5daf657c2e9caa681e
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Fri Sep 5 19:25:09 2025 +0530
+
+    apijs changed to render url
+
+commit 7e5298c659b8f2f443c31b5668f26d2faacc3b1b
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Fri Sep 5 18:41:22 2025 +0530
+
+    cron adjustments, mobile ui padding adj to viewfull ui
+    missedtimeblock cron to run every 30m -> 3h
+
+commit 4f80084e2b605e4d8d0e6144c19510b5206575b8
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Sep 2 07:30:04 2025 +0530
+
+    ranks section added \
+    cron time changed to utc\
+
+commit ded87b5be8f011a460cdda493fdf7e14efb3f047
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sun Aug 31 09:49:24 2025 +0530
+
+    context added to change the page title and subtile on navigation
+    event points to points utils form raw app constatnt, more managemeable and intuitive
+    getrankutils in action about to implement
+
+commit c5a35e8f72e03bf9357cb5bf3e4633f66e6c41fa
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sat Aug 30 16:48:46 2025 +0530
+
+    added sounds and bugfixes to most used utilities
+
+commit e0f647b6ddecbb03d87a159ae49b6328fae986d2
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sat Aug 30 00:38:39 2025 +0530
+
+    added points system to most used utilities && bug fixes
+
+commit 50d6c01944f81740390cadc0f8669b93adfd7981
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Fri Aug 29 19:16:32 2025 +0530
+
+    changed api url and made hourly chekin to /59min again
+
+commit a6e39694400ff1538144383619a8724934f39702
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Thu Aug 28 23:32:54 2025 +0530
+
+    bottom nav balanced to <=5 theme change
+
+commit 6bb0bc7cd81a86a883d1a2417a7183f98b2473fa
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Thu Aug 28 14:26:08 2025 +0530
+
+    added points ledger to leader board gloabl service remains, leaderboarpage ready
+
+commit 2b0fe30144e29e67157bc87ce90055fa08c3c5d5
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Thu Aug 28 08:43:53 2025 +0530
+
+    feat: hourly checkin, rendered on a user's timeline
+
+commit 5956f9840206d264c9479ef801c8c02d991b1444
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 27 21:10:41 2025 +0530
+
+    added points ledger, applyPoints service when completing block with a nice audio feedback
+
+commit 845f56b26a06bd81c0ec9e01e0e0aed608d65e70
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 27 12:40:28 2025 +0530
+
+    changed api urls to jathedarbe.onrender everywhere
+
+commit 002e491d3abbd6b1a69d2f1defaf4243e6dd5b48
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 27 12:15:38 2025 +0530
+
+    changed api url to jathedarbe.onrender
+
+commit 6801bbabe96e68d5f8383caac9951fc5b8da7b19
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 27 11:58:56 2025 +0530
+
+    changed discord env process.vars and import.meta statements
+
+commit 0ba116e710e14646d1add444896e2c6df4b6fccc
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 27 11:01:31 2025 +0530
+
+    chaged discord env vars to vard
+
+commit 6c0564f10119cc4f68b6ad49811de1839e74c7d8
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 27 10:55:53 2025 +0530
+
+    chaged discord env vars to vard
+
+commit a7050ef49f823761109345c43077a875865bb169
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 27 10:26:06 2025 +0530
+
+    api url changed to backend
+
+commit ae169298f652d3f78db0ffc91d6366e9bd3c0f01
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 27 10:12:54 2025 +0530
+
+    fix: discord messages error handling
+    fix: discord bot token changes and renamed to consistency
+    refactor: All function fetch Renamed accordingly
+    refactor: pointSlice won't cause any errors now, proper handling only return if userId exist on frontend
+    
+    refactor: removed duplicated redux fetches and now only it is fetched and set from the top level app.jsx and the state is read everywhere else in the children
+
+commit fc263d5a9f0a51fb0ce0ed35d394c36b7b9029ad
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 27 08:38:05 2025 +0530
+
+    before refactoring the pointsliceslices top level await logic and refactoriin duplicate fetches to top level and reading states for clean flow
+
+commit 2e043d4629ce241c3c54543ba5469a4af2554327
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 27 00:21:07 2025 +0530
+
+    feat: added autslices to fethc user data
+    feat: added points slices to optimitinc loading of user points, with points txn ledger for each user
+    feat: points credit deduct feature added
+    refactor: dead notification services will get deleted
+
+commit 531a955a06445ba7e52f931cd6b02388de6e8d29
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sat Aug 23 06:29:30 2025 +0530
+
+    changed autslicepath and landingheader path
+
+commit a43865c6e5cb68780ed7fb96bafe3b8ef5c03e30
+Author: Manmeet Singh <95163474+manmeet-ms@users.noreply.github.com>
+Date:   Sat Aug 23 00:40:18 2025 +0530
+
+    Update store.js changed filepath of authslicr to internal authslicr
+
+commit 4544bf82b9198619e17dd6e9c25d689ce2b3afc0
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sat Aug 23 00:16:13 2025 +0530
+
+    routes changed
+
+commit 41f1effd5e1b4169fa05fe1c24163cdc48a54fbb
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sat Aug 23 00:15:52 2025 +0530
+
+    violation slices and summary available
+    redux store implementation, login with discord succesful with JWT flow
+    intiduced points system in /point.utils.js
+
+commit e194a7f676bd6b1d78ad078096e23dafe572f8bb
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Thu Aug 21 22:00:15 2025 +0530
+
+    google auth on halt and tryinh to implement discord auth
+
+commit a59d605ff2bce7b79af1177f3a9fde4d8a983374
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Thu Aug 21 00:15:54 2025 +0530
+
+    Bottom nav added on mobile layout
+    quotes initialized and implemented
+    quote of teh time section
+    adjusted crons
+    random quotes are saved for future reference training data
+    inintla stages of adding google auth
+
+commit a87f86190f171be6a0e3cbc9803c492ca7831f4c
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Aug 19 23:44:00 2025 +0530
+
+    cors to true
+
+commit 8df1ecf6b35cb27c4cd8650f915e57bd7fc05fe6
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Aug 19 23:22:02 2025 +0530
+
+    uri variable changed to prod :: moved checkMissedTimeblocks from server.js internal to more cleaer approach :: to cron job
+
+commit c9a20ea32e9e6d19c8571c36e428f9dfe71256ea
+Author: Manmeet Singh <95163474+manmeet-ms@users.noreply.github.com>
+Date:   Tue Aug 19 00:59:19 2025 +0530
+
+    Update violation.controller.js
+
+commit 4611bfa7b35c7a05f2644eb2e43b45818551f7fb
+Author: Manmeet Singh <95163474+manmeet-ms@users.noreply.github.com>
+Date:   Tue Aug 19 00:58:40 2025 +0530
+
+    Update ritual.controller.js
+
+commit 605bdf249e07d0622de58cd70b08a6cd58b8d9db
+Author: Manmeet Singh <95163474+manmeet-ms@users.noreply.github.com>
+Date:   Tue Aug 19 00:58:11 2025 +0530
+
+    Update punishment.controller.js
+
+commit 0dc14848210553ecc75d214a5931af49850a6b2a
+Author: Manmeet Singh <95163474+manmeet-ms@users.noreply.github.com>
+Date:   Tue Aug 19 00:57:32 2025 +0530
+
+    Update analytics.controller.js
+
+commit 00efa34a3b0a11559e7f85f8d873e7c1857ae335
+Author: Manmeet Singh <95163474+manmeet-ms@users.noreply.github.com>
+Date:   Tue Aug 19 00:52:48 2025 +0530
+
+    Update punishment.service.js
+
+commit 1c90f7476c5b6226b12d69fcd5a527b460134951
+Author: Manmeet Singh <95163474+manmeet-ms@users.noreply.github.com>
+Date:   Tue Aug 19 00:50:56 2025 +0530
+
+    Update violation.service.js
+
+commit dca96d247ff6d1ad9fc1fb6582c390e571cc6492
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Aug 19 00:38:24 2025 +0530
+
+    minor fix: currentPage to let from const
+
+commit 5da0a79bfe21f3d3cac21893d4e0ace5a2a44b2c
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Aug 19 00:32:07 2025 +0530
+
+    feat: redis caching added as middlewares to external routes , philoshopy routes
+    feat: philoshopy cron motivation added
+    feat: aded some sort of pagination in urges for handling large data
+
+commit b98627620709c19b7165a434028c5a256960087b
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 13 16:32:52 2025 +0530
+
+    removed start end missed blovk notifs for now, nad justed cron for recurring notifs
+
+commit 8dd0f64b2c56b2cec186278c5e7160a4d699f723
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Aug 12 17:34:56 2025 +0530
+
+    chornos timers imported and ft. reset timers
+
+commit 169bb3da80ff87333bcd7bc49c1507c2a4392e10
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Aug 12 12:27:57 2025 +0530
+
+    icons pushed
+
+commit 4231bc0863ab1a9874e5acde21b5d30773a3adf3
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Aug 12 09:56:18 2025 +0530
+
+    api.js url changes to dep
+
+commit 796f08b15914bfb10d51e32049122ba46db348a7
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Aug 12 09:02:36 2025 +0530
+
+    ft. triggers notifs for timeblock missed, staart end need to check
+    urge uinpout refactor to single click
+    cron jobs in recurring-notifs service
+    defined timers model controllers services routes
+
+commit 98e1c7afa2f9ec00592d5a79fc2a5a27556bcaf6
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Thu Aug 7 16:12:13 2025 +0530
+
+    backup
+
+commit db9f6ba98605310cbc0785cdc1de3bb04fa75d74
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Thu Aug 7 15:54:19 2025 +0530
+
+    ft. triggers notifs for timeblock start/end/missed
+
+commit 92a388762cbade5a93191726e50a4321373ffc38
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Thu Aug 7 12:07:50 2025 +0530
+
+    shared BASE_API_URL_SHARED check
+
+commit 620fdf6ae1b0b13a5e727456a60c7f8d5e139aa6
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Thu Aug 7 00:01:41 2025 +0530
+
+    added discord adn landing page routes
+
+commit 9e2a329a73fbce09d0c4699d25d482b31ff04f56
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 6 22:43:34 2025 +0530
+
+    MVP PASSED
+    urges features added graph, notes type urges, and form like
+    vercel rewrites for specially accessed urls from address bar
+    sidebar addded with common compoenets
+    - Core data tracking
+    - Behavior-driven logic
+    - User reflection capabilities
+    - Notification AND DISCORD alerts
+    - Basic logging and dashboard prep
+    - **Timeblock system** with detection for missed blocks.
+    - **Violation logging** and punishment system (with Discord webhook).
+    - **Push notification support** with service worker and VAPID integration.
+    - **Ritual system** and daily check-ins.
+    - **Urges system**:
+    - **Dashboard groundwork** started (for logs, stats, scores).
+    - **Working PWA with service worker** (now clean after vite plugin issues).
+    - **Test data generation** for urges (4k+ entries seeded).
+    - **Environment separation** for dev and prod.
+    - **Notifications & sound triggers** tested.
+    - **Backend–frontend sync** with environment-specific URLs.
+
+commit bfe7011fd16749dca48316adcaa0c9dc8d780259
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 6 00:50:09 2025 +0530
+
+    changed link to prod ones  :::ft. urges new routes and features and grapsh
+
+commit 52e23e0d3eff69fed2c5e64d91916342d7e93dea
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Wed Aug 6 00:48:58 2025 +0530
+
+    ft. urges new routes and features and grapsh
+
+commit c107cd6748e4cbd6c0a33d633e0b85156d9de950
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Aug 5 07:34:37 2025 +0530
+
+    #5 \$\{baseURLAppJsx\} for apps.js changed to backend url
+
+commit a206d8d12d1768dcb65fec281c9f84e0e5408399
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Aug 5 07:24:52 2025 +0530
+
+    \$\{baseURLAppJsx\} for apps.js
+
+commit e167b071e058063c38fea22b475670034bf1ca34
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Tue Aug 5 07:19:33 2025 +0530
+
+    fix(notifications): hash #4 check after removing PWA plugin & support
+    
+    Temporarily disabled PWA support by removing the Vite plugin and related setup. Notifications should now work reliably on mobile, including picking up the push subscription. Will reintroduce installability later.
+
+commit 108118b5cfc177f20843d90e2ce7462bd1a0e330
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Mon Aug 4 23:52:44 2025 +0530
+
+    4 notification check , after changing ui to renderbackend in order to get everything work on prod
+
+commit 7826a6561a14d789978207559b25dadfefe10f2e
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Mon Aug 4 23:12:21 2025 +0530
+
+    notification check , after changing ui to renderbackend in order to get everything work on prod
+
+commit 89a3f67168e3bccb55d585c2a515961fd800cf6d
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Mon Aug 4 23:09:47 2025 +0530
+
+    notification check , after changing ui to renderbackend in order to get everything work on prod
+
+commit 02504954425a7f7fdf185eafb5bd429f3f7a1e76
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Mon Aug 4 22:18:51 2025 +0530
+
+    notification check with sound
+
+commit e715c5323b5d9e82f0a11716a8eb9782a4a46eec
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Mon Aug 4 08:18:10 2025 +0530
+
+    chaned api.js to render link to check on mobile
+
+commit 2cbd7c2d0cc9cb35a33f97e6cf43b071ecd802e8
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Mon Aug 4 00:23:04 2025 +0530
+
+    UI adjustments deploy try-check3
+
+commit a27adc6bba3f4a260a15573191d203460904228a
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sat Aug 2 07:55:34 2025 +0530
+
+    agreement image resixed
+
+commit b2b1e13e461b1790419a333ffc5472b8f59b5cb0
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sat Aug 2 07:43:14 2025 +0530
+
+    added positives, negative, page dashbaord fully styled working fine
+
+commit 1d6d56145a8db17600f25a2cf129aa418205ea70
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Thu Jul 31 09:14:30 2025 +0530
+
+    ui imporovment
+
+commit 588483245f726cbdfcefa7305da62bc23877823f
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Mon Jul 28 23:22:14 2025 +0530
+
+    render deplyment1 + trying to do statis site dep on render
+
+commit 1aa3a1876b7acc0f20122e520fe82d2c28a43173
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Fri Jul 25 23:46:28 2025 +0530
+
+    render deplyment1 + trying to do statis site dep on render
+
+commit 2e62346cd8c6c28cf2bb3e6ff0ccec3806f7bf2d
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Fri Jul 25 12:03:12 2025 +0530
+
+    changed to resolve our dir location issue while build , no need to explicitly define build{}
+    working on dasbhbaord ui, future header and component UI  will polished dashboard , after backend deployment
+
+commit ad9628b2c55fbfe795ec2c0ed58f009b1ee839e7
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Fri Jul 25 11:14:11 2025 +0530
+
+    render deplyment0
+
+commit 51960a75b7dfe3b09bc03b68be3b0f7e48bb9973
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Thu Jul 24 22:01:14 2025 +0530
+
+    feat(core): implement timeblock system, violation logging, notifications, and dashboard UI
+    
+    - Timeblock creation with strict/completed flags, start/end time
+    - Auto-check for missed timeblocks via checkMissedTimeblocks()
+    - Violation system with Discord taunts + logViolation endpoint
+    - Push notification setup with VAPID and working /subscribe, /test
+    - UI: dashboard stats cards and violation table with taunts
+
+commit f0d53584650852dd9a0c186b53bc6d5fa21d685c
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sat Jul 19 23:27:56 2025 +0530
+
+    insitial funtionality
+
+commit d68bfaa4a2a66610aa53312528e026725faabc8b
+Author: Manmeet Singh <manmeets.zsh@gmail.com>
+Date:   Sat Jul 19 00:42:27 2025 +0530
+
+    initial commit

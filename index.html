@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+        <meta name="theme-color" content="#111827">
+    <!-- <link rel="icon" href="/logo.ico" sizes="48x48"> -->
+    <link rel="icon" href="/assets/pwa-icons/icons/icon-72x72.png" sizes="any" type="image/svg+xml"> 
+    <!--  <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png"> -->
+     <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+  <link rel="manifest" href="/app.webmanifest">
+  <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="194711879097-sr3vptebo7cpgpj9otlan2lsjrprm1dc.apps.googleusercontent.com"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jathedar</title>
+    <!-- <title>ਜੱਥੇਦਾਰ</title> -->
+  </head>
+  <body>
+    <div id="root">
+      
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- <script>
+        function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  logger("log",'ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  logger("log",'Name: ' + profile.getName());
+  logger("log",'Image URL: ' + profile.getImageUrl());
+  logger("log",'Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      logger("log",'User signed out.');
+    });
+  }
+
+
+    </script> -->
+  </body>
+</html>
