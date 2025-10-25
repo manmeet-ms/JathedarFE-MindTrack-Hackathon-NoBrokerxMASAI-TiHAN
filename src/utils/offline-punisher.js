@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { triggerPunishment } from '../services/punishment.service.js'
+import { triggerPunishmentSrv } from '../services/punishment.service.js'
 import { getOfflineSchedule } from './sync.utils.js'
 
 export const startOfflinePunisher = () => {
@@ -11,7 +11,7 @@ blocks.forEach(block => {
   if (block.strict && !block.completed) {
     const endTime = dayjs(`${block.date}T${block.endTime}`)
     if (now.isAfter(endTime)) {
-      triggerPunishment({ type: 'missed_block', task: block.task })
+      triggerPunishmentSrv({ type: 'missed_block', task: block.task })
     }
   }
 })
@@ -19,7 +19,7 @@ blocks.forEach(block => {
 if (ritual && !ritual.completed) {
   const ritualTime = dayjs(`${ritual.date}T23:59`)
   if (now.isAfter(ritualTime)) {
-    triggerPunishment({ type: 'missed_ritual' })
+    triggerPunishmentSrv({ type: 'missed_ritual' })
   }
 }
 
@@ -28,5 +28,5 @@ if (ritual && !ritual.completed) {
 const ritualDone = localStorage.getItem('ritual_checkin_' + dayjs().format('YYYY-MM-DD'))
 
 if (!ritualDone && dayjs().isAfter(dayjs().endOf('day'))) {
-triggerPunishment({ type: 'missed_ritual' })
+triggerPunishmentSrv({ type: 'missed_ritual' })
 }
