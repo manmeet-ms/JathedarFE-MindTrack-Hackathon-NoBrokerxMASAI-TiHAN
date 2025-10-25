@@ -13,7 +13,7 @@ import { useSound } from "react-sounds";
 import { toast } from "sonner";
 
 import { EVENT_POINTS } from "../utils/point.utils";
-import { applyPointsSrv_FE_Url } from "../services/points.service";
+import { applyPointsSrv } from "../services/points.service";
 import { getViolations, resolveViolationSrv } from "../services/violation.service";
 import { setPt } from "../store/pointsSlice";
 
@@ -91,7 +91,7 @@ export function RecentViolations({ totalCount, violations , setViolations}) {
                   onClick={async () => {
                     resolveViolationSrv(v._id);
                     play();
-                    const updatedPoints = await applyPointsSrv_FE_Url("VIOLATION_RESOLVED_CREDIT");
+                    const updatedPoints = await applyPointsSrv("VIOLATION_RESOLVED_CREDIT");
                     toast(`Points credited: ${EVENT_POINTS.VIOLATION_RESOLVED_CREDIT}. Great work`, {
                        position: "top-center",
                       description: `Updated Balance: ${updatedPoints.data.points}`,
@@ -210,7 +210,7 @@ export function ViolationsLogsFull() {
                   onClick={async () => {
                     resolveViolationSrv(v._id);
                     play();
-                    const updatedPoints = await applyPointsSrv_FE_Url("VIOLATION_RESOLVED_CREDIT");
+                    const updatedPoints = await applyPointsSrv("VIOLATION_RESOLVED_CREDIT");
                     toast(`Points credited: ${EVENT_POINTS.VIOLATION_RESOLVED_CREDIT}. Great work`, {
                        position: "top-center",
                       description: `Updated Balance: ${updatedPoints.data.points}`,

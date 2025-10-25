@@ -23,8 +23,6 @@ export const getUserSrv = (id) => axios.get(`${import.meta.env.VITE_BACKEND_URL}
 export const updateUserSrv = (data) => api.put(`/users/update`, data, { withCredentials: true });
 
 
-export const getPointsLedgerSrv = () => api.get("/users/points/ledger", { withCredentials: true });
-
 
 export const getHourlyCheckinsSrv = () => api.get("/users/hourly-checkins", { withCredentials: true });
 export const createHourlyCheckinSrv = (data) => api.post("/users/hourly-checkins/create", data, { withCredentials: true });

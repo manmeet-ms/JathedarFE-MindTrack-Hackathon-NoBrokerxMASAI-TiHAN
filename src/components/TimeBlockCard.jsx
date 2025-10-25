@@ -11,7 +11,7 @@ import { useSound } from "react-sounds";
 import { toast } from "sonner";
 
 import api from "../services/api";
-import { applyPointsSrv_FE_Url } from "../services/points.service";
+import { applyPointsSrv } from "../services/points.service";
 import { setPt } from "../store/pointsSlice";
 import { EVENT_POINTS } from "../utils/point.utils";
 import { getRandomTaunt } from "../utils/taunts.utils";
@@ -30,7 +30,7 @@ const TimeBlockCard = () => {
     await completeBlock(id);
     const res = await getTodayBlocks();
     setBlocks(res.data); // refresh
-    const updatedPoints = await applyPointsSrv_FE_Url("TIMEBLOCK_COMPLETE_CREDIT");
+    const updatedPoints = await applyPointsSrv("TIMEBLOCK_COMPLETE_CREDIT");
 
     console.log(updatedPoints);
     // TODO complete all blocks either do a cron or detect the last mark done

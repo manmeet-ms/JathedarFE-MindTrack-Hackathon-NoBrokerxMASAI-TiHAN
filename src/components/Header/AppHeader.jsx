@@ -15,7 +15,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { APP_NAME } from "../../../shared/appVariables.shared.js";
-import { getPointsLedgerSrv, getUserSrv } from "../../services/user.service.js";
+import {   getUserSrv } from "../../services/user.service.js";
+import { getPointsLedgerSrv } from "../../services/points.service.js";
 
 export const AppHeader = () => {
   const points = useSelector((state) => state.points.value);

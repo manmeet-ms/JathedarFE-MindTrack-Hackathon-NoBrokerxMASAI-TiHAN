@@ -24,10 +24,9 @@ import { useSound } from "react-sounds";
 import { toast } from "sonner";
 
 import { QUOTES } from "../../shared/constants.js";
-import { applyPointsSrv_FE_Url } from "../services/points.service.js";
-import { getTimersSrv, resetTimerSrv } from "../services/timer.service.js";
+import { createChronosSrv, deleteChronosSrv, getChronosSrv, initializeChronosSrv, resetChronosSrv, updateChronosSrv } from "../services/chronos.service.js";
+import { applyPointsSrv } from "../services/points.service.js";
 import { setPt } from "../store/pointsSlice.js";
-// import { externalInitializer } from "../tests/create-actual-timers.test.js";
 import { EVENT_POINTS } from "../utils/point.utils.js";
 import { screenShake } from "../utils/screen-shake.utils.js";
 import Agreement from "./Agreement.jsx";
@@ -129,8 +128,8 @@ const Chronos = () => {
 
   const [timers, setTimers] = useState([]);
   const fetchTimers = async () => {
-    const res = await getTimersSrv();
-    // console.log("Timers response:", res.data);
+    const res = await getChronosSrv();
+    console.log("Timers response:", res.data);
     setTimers(res.data);
 
     // setTimers(res);
@@ -144,145 +143,144 @@ const Chronos = () => {
     <>
       <main className=" grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-4 space-y-4 px-4">
         <section className="col-span-2 flex flex-col gap-4">
-          {timers.length !== 0 ? (
-            timers.map((item, idx) => {
-              const randomIndex = Math.floor(Math.random() * QUOTES.length);
-              const randomQuote = QUOTES[randomIndex];
+          {timers.length !== 0
+            ? timers.map((item, idx) => {
+                const randomIndex = Math.floor(Math.random() * QUOTES.length);
+                const randomQuote = QUOTES[randomIndex];
 
-              const startDate = dayjs(item.timerStarted); // when the timer started
-              const now = dayjs(); // current time
+                const startDate = dayjs(item.timerStarted); // when the timer started
+                const now = dayjs(); // current time
 
-              const diffDuration = dayjs.duration(now.diff(startDate));
+                const diffDuration = dayjs.duration(now.diff(startDate));
 
-              const hours = String(Math.floor(diffDuration.asHours())).padStart(2, "0"); // total hours
-              const minutes = String(Math.floor(diffDuration.asMinutes() % 60)).padStart(2, "0"); // leftover minutes
-              const seconds = String(Math.floor(diffDuration.asSeconds() % 60)).padStart(2, "0"); // leftover seconds
-              // console.log("startDate", startDate);
-              // console.log("now", now);
+                const hours = String(Math.floor(diffDuration.asHours())).padStart(2, "0"); // total hours
+                const minutes = String(Math.floor(diffDuration.asMinutes() % 60)).padStart(2, "0"); // leftover minutes
+                const seconds = String(Math.floor(diffDuration.asSeconds() % 60)).padStart(2, "0"); // leftover seconds
+                // console.log("startDate", startDate);
+                // console.log("now", now);
 
-              // console.log("⏳ Time Difference:", {
-              //   hours,
-              //   minutes,
-              //   seconds,
-              // });
-              let rankIdx, rankObject, upNextRank;
+                // console.log("⏳ Time Difference:", {
+                //   hours,
+                //   minutes,
+                //   seconds,
+                // });
+                let rankIdx, rankObject, upNextRank;
 
-              if (hours >= 24 * 30) {
-                rankIdx = 0;
-                rankObject = { ...rankDistribution[rankIdx] };
-                // upNextRank = { ...rankDistribution[rankIdx - 1] };
+                if (hours >= 24 * 30) {
+                  rankIdx = 0;
+                  rankObject = { ...rankDistribution[rankIdx] };
+                  // upNextRank = { ...rankDistribution[rankIdx - 1] };
 
-                // console.log(rankIdx, rankObject);
-              } else if (hours >= 24 * 21) {
-                rankIdx = 1;
-                rankObject = { ...rankDistribution[rankIdx] };
-                // upNextRank = { ...rankDistribution[rankIdx - 1] };
+                  // console.log(rankIdx, rankObject);
+                } else if (hours >= 24 * 21) {
+                  rankIdx = 1;
+                  rankObject = { ...rankDistribution[rankIdx] };
+                  // upNextRank = { ...rankDistribution[rankIdx - 1] };
 
-                // console.log(rankIdx, rankObject);
-              } else if (hours >= 24 * 10) {
-                rankIdx = 2;
-                rankObject = { ...rankDistribution[rankIdx] };
-                // upNextRank = { ...rankDistribution[rankIdx - 1] };
+                  // console.log(rankIdx, rankObject);
+                } else if (hours >= 24 * 10) {
+                  rankIdx = 2;
+                  rankObject = { ...rankDistribution[rankIdx] };
+                  // upNextRank = { ...rankDistribution[rankIdx - 1] };
 
-                // console.log(rankIdx, rankObject);
-              } else if (hours >= 24 * 7) {
-                rankIdx = 3;
-                rankObject = { ...rankDistribution[rankIdx] };
-                // upNextRank = { ...rankDistribution[rankIdx - 1] };
+                  // console.log(rankIdx, rankObject);
+                } else if (hours >= 24 * 7) {
+                  rankIdx = 3;
+                  rankObject = { ...rankDistribution[rankIdx] };
+                  // upNextRank = { ...rankDistribution[rankIdx - 1] };
 
-                // console.log(rankIdx, rankObject);
-              } else if (hours >= 24 * 5) {
-                rankIdx = 4;
-                rankObject = { ...rankDistribution[rankIdx] };
-                // upNextRank = { ...rankDistribution[rankIdx - 1] };
+                  // console.log(rankIdx, rankObject);
+                } else if (hours >= 24 * 5) {
+                  rankIdx = 4;
+                  rankObject = { ...rankDistribution[rankIdx] };
+                  // upNextRank = { ...rankDistribution[rankIdx - 1] };
 
-                // console.log(rankIdx, rankObject);
-              } else if (hours >= 72) {
-                rankIdx = 5;
-                rankObject = { ...rankDistribution[rankIdx] };
-                // upNextRank = { ...rankDistribution[rankIdx - 1] };
+                  // console.log(rankIdx, rankObject);
+                } else if (hours >= 72) {
+                  rankIdx = 5;
+                  rankObject = { ...rankDistribution[rankIdx] };
+                  // upNextRank = { ...rankDistribution[rankIdx - 1] };
 
-                // console.log(rankIdx, rankObject);
-              } else if (hours >= 48) {
-                rankIdx = 6;
-                rankObject = { ...rankDistribution[rankIdx] };
-                // upNextRank = { ...rankDistribution[rankIdx - 1] };
+                  // console.log(rankIdx, rankObject);
+                } else if (hours >= 48) {
+                  rankIdx = 6;
+                  rankObject = { ...rankDistribution[rankIdx] };
+                  // upNextRank = { ...rankDistribution[rankIdx - 1] };
 
-                // console.log(rankIdx, rankObject);
-              } else if (hours >= 24) {
-                rankIdx = 7;
-                rankObject = { ...rankDistribution[rankIdx] };
-                // upNextRank = { ...rankDistribution[rankIdx - 1] };
+                  // console.log(rankIdx, rankObject);
+                } else if (hours >= 24) {
+                  rankIdx = 7;
+                  rankObject = { ...rankDistribution[rankIdx] };
+                  // upNextRank = { ...rankDistribution[rankIdx - 1] };
 
-                // console.log(rankIdx, rankObject);
-              } else if (hours >= 10) {
-                rankIdx = 8;
-                rankObject = { ...rankDistribution[rankIdx] };
-                // upNextRank = { ...rankDistribution[rankIdx - 1] };
+                  // console.log(rankIdx, rankObject);
+                } else if (hours >= 10) {
+                  rankIdx = 8;
+                  rankObject = { ...rankDistribution[rankIdx] };
+                  // upNextRank = { ...rankDistribution[rankIdx - 1] };
 
-                // console.log(rankIdx, rankObject);
-              } else if (hours < 10) {
-                rankIdx = -1;
-                rankObject = { ...rankDistribution[rankDistribution.length - 1] } || "defaultString";
-              } else {
-                rankIdx = -1;
-                rankObject = { ...rankDistribution[rankDistribution.length - 1] } || "defaultString";
-              }
+                  // console.log(rankIdx, rankObject);
+                } else if (hours < 10) {
+                  rankIdx = -1;
+                  rankObject = { ...rankDistribution[rankDistribution.length - 1] } || "defaultString";
+                } else {
+                  rankIdx = -1;
+                  rankObject = { ...rankDistribution[rankDistribution.length - 1] } || "defaultString";
+                }
 
-              // const minutes = diffDuration.minutes().toString().padStart(2, "0");
-              // const seconds = diffDuration.seconds().toString().padStart(2, "0");
-              // // const timeDiff = `${hours}h:${minutes}m:${seconds}s`;
-              const timeDiff = `${hours}:${minutes}:${seconds}`;
-              const handleResetTimer = async () => {
-                screenShake();
-                console.log("handleResetTimer clicked", item._id);
-                const timerId = String(item._id);
-                await resetTimerSrv(timerId);
-                const updatedPoints = await applyPointsSrv_FE_Url("TIMER_RESET_PENALTY");
-                console.log(updatedPoints);
-                // TODO play sound on toast default?
-                play();
-                toast(`Points deducted: ${EVENT_POINTS.TIMER_RESET_PENALTY}`, {
-                  position: "top-center",
-                  description: `Such a shame. Updated Balance: ${updatedPoints.data.points}`,
-                  action: {
-                    label: "Back to work",
-                    onClick: () => navigate("/"),
-                  },
-                });
-                dispatch(setPt(updatedPoints.data.points));
+                // const minutes = diffDuration.minutes().toString().padStart(2, "0");
+                // const seconds = diffDuration.seconds().toString().padStart(2, "0");
+                // // const timeDiff = `${hours}h:${minutes}m:${seconds}s`;
+                const timeDiff = `${hours}:${minutes}:${seconds}`;
+                const handleResetTimer = async () => {
+                  screenShake();
+                  console.log("handleResetTimer clicked", item._id);
+                  const timerId = String(item._id);
+                  await resetChronosSrv(timerId);
+                  const updatedPoints = await applyPointsSrv("TIMER_RESET_PENALTY");
+                  console.log(updatedPoints);
+                  // TODO play sound on toast default?
+                  play();
+                  toast(`Points deducted: ${EVENT_POINTS.TIMER_RESET_PENALTY}`, {
+                    position: "top-center",
+                    description: `Such a shame. Updated Balance: ${updatedPoints.data.points}`,
+                    action: {
+                      label: "Back to work",
+                      onClick: () => navigate("/"),
+                    },
+                  });
+                  dispatch(setPt(updatedPoints.data.points));
 
-                await fetchTimers();
-              };
-              return (
-                <section key={idx}>
-                  <div className={`bg-card/80 rounded-xl border px-4 py-6`}>
-                    <div className="flex h-full items-center justify-between">
-                      <div className=" ">
-                        {/* <div className="mr-2 item-center inline-flex justify-center">
+                  await fetchTimers();
+                };
+                return (
+                  <section key={idx}>
+                    <div className={`bg-card/80 rounded-xl border px-4 py-6`}>
+                      <div className="flex h-full items-center justify-between">
+                        <div className=" ">
+                          {/* <div className="mr-2 item-center inline-flex justify-center">
                           <div className={`absolute z-2 h-2 w-2 rounded-full ${item.pulseTheme}`}></div>
                           <div className={`h-2 w-2 animate-ping rounded-full ${item.pulseTheme}`}></div>
                         </div> */}
-                        <h2 className={`title-font text-primary  inline-flex items-center text-xs capitalize`}>
-                          {item.codename}
+                          <h2 className={`title-font text-primary  inline-flex items-center text-xs capitalize`}>
+                            {item.codename}
 
-                          <span className={`ml-2 inline-flex cursor-pointer items-center font-medium ${rankObject.textColor} ${rankObject.bgColorWithOpacity} rounded px-1.5 py-0.5`}>
-                            {/* className={`ml-2 inline-flex cursor-pointer items-center font-medium ${rankObject.textColor} ${rankObject.bgColorWithOpacity} rounded px-1.5 py-0.5`}> */}
-                            {/* {rankObject.icon}#{rankIdx} - {rankObject.name} */}
-                            Rank #{rankIdx}
-                            <Dot
-                              // className="text-slate-900 dark:text-foreground/60 "
-                              size={14}
-                              strokeWidth={2}
-                            />{" "}
-                            {rankObject.name}
-                          </span>
+                            <span className={`ml-2 inline-flex cursor-pointer items-center font-medium ${rankObject.textColor} ${rankObject.bgColorWithOpacity} rounded px-1.5 py-0.5`}>
+                              {/* className={`ml-2 inline-flex cursor-pointer items-center font-medium ${rankObject.textColor} ${rankObject.bgColorWithOpacity} rounded px-1.5 py-0.5`}> */}
+                              {/* {rankObject.icon}#{rankIdx} - {rankObject.name} */}
+                              Rank #{rankIdx}
+                              <Dot
+                                // className="text-slate-900 dark:text-foreground/60 "
+                                size={14}
+                                strokeWidth={2}
+                              />{" "}
+                              {rankObject.name}
+                            </span>
+                          </h2>
+                          <h1 className="title-font text-foreground text-xl font-medium">{item.title}</h1>
+                          <p className="w-56 truncate text-muted-foreground text-sm">{item.quoteFlashingAllowed ? randomQuote : item.description}</p>
 
-                        </h2>
-                        <h1 className="title-font text-foreground text-xl font-medium">{item.title}</h1>
-                        <p className="w-56 truncate text-muted-foreground text-sm">{item.quoteFlashingAllowed ? randomQuote : item.description}</p>
-
-                        {/* <div className="flex cursor-pointer items-center justify-center gap-2 rounded-full border px-3 py-2"
+                          {/* <div className="flex cursor-pointer items-center justify-center gap-2 rounded-full border px-3 py-2"
                       >
                         <Pencil
                           className="mr-1 inline-flex items-center"
@@ -299,11 +297,11 @@ const Chronos = () => {
                         <XIcon strokeWidth={2.25} size={14} />
                         Delete
                       </div> */}
-                      </div>
-                      <div className="items-en flex flex-col justify-center">
-                        {/* timer controls */}
+                        </div>
+                        <div className="items-en flex flex-col justify-center">
+                          {/* timer controls */}
 
-                        {/* <div className="flex cursor-pointer items-center justify-center gap-4  
+                          {/* <div className="flex cursor-pointer items-center justify-center gap-4  
                     "
                     >
                 <Pencil
@@ -315,109 +313,108 @@ const Chronos = () => {
                 <XIcon strokeWidth={2.25} size={14} /> 
               </div> */}
 
-                        <h2 className="text-foreground text-center text-xl font-medium">{timeDiff}</h2>
-                        <span className="text-foreground/40 mb-1 text-xs font-light">{dayjs(startDate).from(dayjs())}</span>
+                          <h2 className="text-foreground text-center text-xl font-medium">{timeDiff}</h2>
+                          <span className="text-foreground/40 mb-1 text-xs font-light">{dayjs(startDate).from(dayjs())}</span>
+                        </div>
                       </div>
-                    </div>
-                    <section className="flex flex-wrap gap-0.75 py-2 text-sm">
-                      {" "}
-                      {item.perks.map((pill, idx) => (
-                        <TooltipProvider key={idx}>
-                          <Tooltip>
-                            <TooltipTrigger className="rounded bg-blue-400/40 p-1 px-2 font-semibold text-blue-800 capitalize dark:bg-blue-800/20 dark:text-blue-400">
-                              {/* <TooltipTrigger className="rounded border border-dashed border-blue-400/60 bg-blue-400/40 p-1 px-2 font-semibold text-blue-800 capitalize dark:bg-blue-800/20 dark:text-blue-400"> */}
-                              <span>
-                                {pill.name}
-                                <ArrowUpIcon strokeWidth={2.5} className="relative bottom-0.5 mt-0.5 ml-1 inline-flex items-center justify-center" size={12} />
-                              </span>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{pill.description || null}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      ))}
-                      {/* <hr className="my-2"/> */}
-                      {item.alternates.map((pill, idx) => (
-                        <TooltipProvider key={idx}>
-                          <Tooltip>
-                            <TooltipTrigger className="rounded bg-green-500/40 p-1 px-2 font-semibold text-green-900 capitalize dark:bg-green-800/20 dark:text-green-400">
-                              {/* <TooltipTrigger className="rounded border border-dashed border-green-400/60 bg-green-500/40 p-1 px-2 font-semibold text-green-900 capitalize dark:bg-green-800/20 dark:text-green-400"> */}
-                              <span>
-                                {pill.name}
-                                <ArrowUpRightIcon strokeWidth={2.5} className="relative bottom-0.5 mt-0.5 ml-1 inline-flex items-center justify-center" size={12} />
-                              </span>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{pill.description || null}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      ))}
-                      {item.punishments.map((pill, idx) => (
-                        <TooltipProvider key={idx}>
-                          <Tooltip>
-                            <TooltipTrigger className="rounded bg-red-400/40 p-1 px-2 font-semibold text-red-800 capitalize dark:bg-red-800/20 dark:text-red-400">
-                              {/* <TooltipTrigger className="rounded border border-dashed border-red-400/60 bg-red-400/40 p-1 px-2 font-semibold text-red-800 capitalize dark:bg-red-800/20 dark:text-red-400"> */}
-                              <span>
-                                {pill.name}
-                                {pill.icon ? pill.icon : <ArrowDownIcon strokeWidth={2.5} className="relative bottom-0.5 mt-0.5 ml-1 inline-flex items-center justify-center" size={12} />}
-                              </span>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{pill.description || null}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      ))}{" "}
-                    </section>
+                      <section className="flex flex-wrap gap-0.75 py-2 text-sm">
+                        {" "}
+                        {item.perks.map((pill, idx) => (
+                          <TooltipProvider key={idx}>
+                            <Tooltip>
+                              <TooltipTrigger className="rounded bg-blue-400/40 p-1 px-2 font-semibold text-blue-800 capitalize dark:bg-blue-800/20 dark:text-blue-400">
+                                {/* <TooltipTrigger className="rounded border border-dashed border-blue-400/60 bg-blue-400/40 p-1 px-2 font-semibold text-blue-800 capitalize dark:bg-blue-800/20 dark:text-blue-400"> */}
+                                <span>
+                                  {pill.name}
+                                  <ArrowUpIcon strokeWidth={2.5} className="relative bottom-0.5 mt-0.5 ml-1 inline-flex items-center justify-center" size={12} />
+                                </span>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>{pill.description || null}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        ))}
+                        {/* <hr className="my-2"/> */}
+                        {item.alternates.map((pill, idx) => (
+                          <TooltipProvider key={idx}>
+                            <Tooltip>
+                              <TooltipTrigger className="rounded bg-green-500/40 p-1 px-2 font-semibold text-green-900 capitalize dark:bg-green-800/20 dark:text-green-400">
+                                {/* <TooltipTrigger className="rounded border border-dashed border-green-400/60 bg-green-500/40 p-1 px-2 font-semibold text-green-900 capitalize dark:bg-green-800/20 dark:text-green-400"> */}
+                                <span>
+                                  {pill.name}
+                                  <ArrowUpRightIcon strokeWidth={2.5} className="relative bottom-0.5 mt-0.5 ml-1 inline-flex items-center justify-center" size={12} />
+                                </span>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>{pill.description || null}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        ))}
+                        {item.punishments.map((pill, idx) => (
+                          <TooltipProvider key={idx}>
+                            <Tooltip>
+                              <TooltipTrigger className="rounded bg-red-400/40 p-1 px-2 font-semibold text-red-800 capitalize dark:bg-red-800/20 dark:text-red-400">
+                                {/* <TooltipTrigger className="rounded border border-dashed border-red-400/60 bg-red-400/40 p-1 px-2 font-semibold text-red-800 capitalize dark:bg-red-800/20 dark:text-red-400"> */}
+                                <span>
+                                  {pill.name}
+                                  {pill.icon ? pill.icon : <ArrowDownIcon strokeWidth={2.5} className="relative bottom-0.5 mt-0.5 ml-1 inline-flex items-center justify-center" size={12} />}
+                                </span>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>{pill.description || null}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        ))}{" "}
+                      </section>
 
-                    <div className="mt-4 flex items-center gap-2 text-xs">
-                      {" "}
-                      {/* {dayjs(item.
+                      <div className="mt-4 flex items-center gap-2 text-xs">
+                        {" "}
+                        {/* {dayjs(item.
                       4} strokeWidth={2} className="inline-flex" />{" "} */}
-                      <span className="title-font text-foreground flex items-center gap-1 text-xs font-light">
-                        {/* Next: Rank #{rankIdx - 1} {upNextRank.name} */}
-                        Rank {rankIdx} <ArrowRightIcon size={10} strokeWidth={2.5} className="inline-flex items-center" /> {rankIdx - 1} {rankIdx <= 0 ? rankDistribution[rankIdx + 1].name : rankDistribution[rankIdx - 1].name}
-                        {/* , on {item.timerStarted}{" "} */}
-                        {/* <Dot
+                        <span className="title-font text-foreground flex items-center gap-1 text-xs font-light">
+                          {/* Next: Rank #{rankIdx - 1} {upNextRank.name} */}
+                          Rank {rankIdx} <ArrowRightIcon size={10} strokeWidth={2.5} className="inline-flex items-center" /> {rankIdx - 1} {rankIdx <= 0 ? rankDistribution[rankIdx + 1].name : rankDistribution[rankIdx - 1].name}
+                          {/* , on {item.timerStarted}{" "} */}
+                          {/* <Dot
                       size={14}
                       strokeWidth={2}
                       className="inline-flex"
                       />
                       Started {moment(startDate).fromNow()} */}
-                      </span>
-                      <span className="text-foreground inline-flex items-center gap-1 text-xs font-light">
-                        <Dot size={14} strokeWidth={2} className="inline-flex" /> Failure Count: <span className="text-red-600 dark:text-red-400">{item.failures}</span> <Dot size={14} strokeWidth={2} className="inline-flex" />{" "}
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <span className="underline">Reset</span>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                              <AlertDialogDescription asChild>
-                                <ScrollArea className="h-[75vh]">
-                                  <Agreement />
-                                </ScrollArea>
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction onClick={handleResetTimer}>Continue to Reset</AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-                      </span>
+                        </span>
+                        <span className="text-foreground inline-flex items-center gap-1 text-xs font-light">
+                          <Dot size={14} strokeWidth={2} className="inline-flex" /> Failure Count: <span className="text-red-600 dark:text-red-400">{item.failures}</span> <Dot size={14} strokeWidth={2} className="inline-flex" />{" "}
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <span className="underline">Reset</span>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                <AlertDialogDescription asChild>
+                                  <ScrollArea className="h-[75vh]">
+                                    <Agreement />
+                                  </ScrollArea>
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                <AlertDialogAction onClick={handleResetTimer}>Continue to Reset</AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </section>
-              );
-            })
-          ) : (
-            null
-            // <Button onClick={() => externalInitializer()}>Initialize timers</Button>
-          )}
+                  </section>
+                );
+              })
+            :  
+"Refresh to initialize timers"
+            }
         </section>
         <section>
           <div className="bg-card rounded-lg border p-4 sm:rounded-lg">

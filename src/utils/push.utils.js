@@ -1,10 +1,7 @@
 // backend/utils/push.js
 // TODO: production me fat sakti hai
-import say from "say";
 
 import webpush from "web-push";
-import "dotenv/config";
-import logger from "./logger.utils.js";
 import PushSubscription from "../../../backend/models/PushSubscription.model.js";
 
 if (!process.env.VITE_WEBPUSH_PUBLIC_KEY || !process.env.VITE_WEBPUSH_PRIVATE_KEY) {

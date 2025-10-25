@@ -4,15 +4,16 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import { IconAccessPoint, IconBolt, IconLiveView, IconTrendingDown, IconTrendingUp, IconWifi, IconWifi0 } from "@tabler/icons-react";
+import { IconAccessPoint, IconBolt, IconLaurelWreath1, IconLaurelWreath2, IconLaurelWreath3, IconLiveView, IconTrendingDown, IconTrendingUp, IconWifi, IconWifi0 } from "@tabler/icons-react";
 import { IconBoltFilled } from "@tabler/icons-react";
 import dayjs from "dayjs";
 import { DotIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { leaderboardUsersSrv } from "../services/analytics.service.js";
-import { getPointsLedgerSrv, getUserSrv } from "../services/user.service.js";
+import {  getUserSrv } from "../services/user.service.js";
 import { usePageMeta } from "@/contexts/PageMetaContext";
+import { getPointsLedgerSrv } from "../services/points.service.js";
 
 const Leaderboard = () => {
   const { setPageMeta } = usePageMeta();
@@ -22,7 +23,7 @@ const Leaderboard = () => {
 subtitle:'Performance ranking, comparisons and global points ledger'
 });
   }, []);
-  const [violations, setViolations] = useState([]);
+  const [leaderboardContenders, setLeaderboardContenders] = useState([]);
 async function getUserFullNameFn(userId) {
   const getUser=  await getUserSrv(userId)
              return getUser.data.name
@@ -39,7 +40,7 @@ async function getUserFullNameFn(userId) {
   }, []);
 
   useEffect(() => {
-    leaderboardUsersSrv().then((res) => setViolations(res.data));
+    leaderboardUsersSrv().then((res) => setLeaderboardContenders(res.data));
   }, []);
 
   return (
@@ -51,7 +52,7 @@ async function getUserFullNameFn(userId) {
               Hall of Fame
               <Badge>
                 <IconBoltFilled />
-                Top {violations.length}{" "}
+                Top {leaderboardContenders.length}{" "}
               </Badge>
             </h2>
             <span className="text-secondary-foreground/60 text-xs"> Leaderboard</span>
@@ -67,7 +68,7 @@ async function getUserFullNameFn(userId) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {violations.map((v, idx) => {
+            {leaderboardContenders.map((v, idx) => {
               let topUserIcon;
               let shiftPosition;
               switch (idx) {
@@ -77,6 +78,7 @@ async function getUserFullNameFn(userId) {
                   topUserIcon = (
                     <span className="ml-2 px-2 py-1 inline-flex  items-center justify-center rounded-full bg-yellow-400/20 text-yellow-500">
                       <IconBolt size={14} stroke={2.5} />
+                      {/* <IconLaurelWreath1 size={14} stroke={1.5} /> */}
                     </span>
                   );
                   break;
@@ -84,7 +86,8 @@ async function getUserFullNameFn(userId) {
                   // shiftPosition="relative right-9"
                   topUserIcon = (
                     <span className="ml-2 px-2 py-1 inline-flex  items-center justify-center rounded-full bg-gray-400/20 text-gray-400">
-                      <IconBolt size={14} stroke={2.5} />
+                      <IconBolt   size={14} stroke={2.5} />
+                      {/* <IconLaurelWreath2   size={14} stroke={1.5} /> */}
                     </span>
                   );
                   break;
@@ -93,6 +96,7 @@ async function getUserFullNameFn(userId) {
                   topUserIcon = (
                     <span className="ml-2 px-2 py-1 inline-flex  items-center justify-center rounded-full bg-amber-700/20 text-amber-700">
                       <IconBolt size={14} stroke={2.5} />
+                      {/* <IconLaurelWreath3 size={14} stroke={1.5} /> */}
                     </span>
                   );
                   break;

@@ -27,7 +27,7 @@ import { useSound } from "react-sounds";
 import { toast } from "sonner";
 
 import { APP_NAME } from "../../shared/appVariables.shared";
-import { applyPointsSrv_FE_Url } from "../services/points.service";
+import { applyPointsSrv } from "../services/points.service";
 import { createHourlyCheckinSrv, getHourlyCheckinsSrv } from "../services/user.service";
 import { setPt } from "../store/pointsSlice";
 import { EVENT_POINTS } from "../utils/point.utils";
@@ -68,7 +68,7 @@ const HourlyCheckInTimeline = () => {
 
     createHourlyCheckinSrv(data);
 
-    const updatedPoints = await applyPointsSrv_FE_Url("DIARY_WRITING_CREDIT");
+    const updatedPoints = await applyPointsSrv("DIARY_WRITING_CREDIT");
 
     // TODO play sound on toast default?
     toast(`Points credited: ${EVENT_POINTS.DIARY_WRITING_CREDIT}. Great work`, {

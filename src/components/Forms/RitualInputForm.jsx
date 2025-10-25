@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { checkInRitual, getTodayRitual } from '../../services/ritual.service';
 import { useSound } from "react-sounds";
-import { applyPointsSrv_FE_Url } from "../../services/points.service";
+import { applyPointsSrv } from "../../services/points.service";
 import { EVENT_POINTS } from "../../utils/point.utils";
 import { IconPlus } from "@tabler/icons-react";
 
@@ -35,7 +35,7 @@ export default function RitualInputForm() {
  
   const handleSubmit = async () => {
     if (!vow.trim()) return;
- const updatedPoints = await applyPointsSrv_FE_Url("RITUAL_CREATED_CREDIT");
+ const updatedPoints = await applyPointsSrv("RITUAL_CREATED_CREDIT");
  
 // TODO play sound on toast default?
                  toast(`Points credited: ${EVENT_POINTS.RITUAL_CREATED_CREDIT}. Great work`, {

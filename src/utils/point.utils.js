@@ -1,5 +1,3 @@
-// utils/pointsService.js
-
 import { IconBarbell, IconBook, IconBrain, IconCrown, IconFlame, IconHammer, IconPlant, IconRocket, IconShieldCheck, IconTargetArrow } from "@tabler/icons-react";
 
 export const EVENT_POINTS = {

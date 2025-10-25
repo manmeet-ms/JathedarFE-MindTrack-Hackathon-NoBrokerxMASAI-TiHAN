@@ -1,41 +1,9 @@
- 
-
-import PointsTxn from "../../../backend/models/PointsTxn.model.js";
-import User from "../../../backend/models/User.model.js";
-
 import api from "./api.js";
-import { EVENT_POINTS } from "../utils/point.utils.js";
 
-export async function applyPointsSrv(userId, eventKey) {
-  
-  const eventPoints = EVENT_POINTS;
-  if (!eventPoints.hasOwnProperty(eventKey)) {
-    throw new Error("Invalid event type");
-  }
+export const applyPointsSrv = (eventKeyString) => api.post(`/points/apply`, { event: eventKeyString }, { withCredentials: true });
 
-  const user = await User.findById(userId);
-  if (!user) throw new Error("User not found");
+export const getPointsLedgerSrv = () => api.get("/points/ledger", { withCredentials: true });
 
-  const currentPoints = user.points;
-  const delta = eventPoints[eventKey];
-  const finalPoints = currentPoints + delta;
-
-  user.points = finalPoints;
-  await user.save();
-
-  await PointsTxn.create({
-    uid: user._id,
-    user: user.name,
-    type: eventKey,
-    points: delta, // change: this is the increment, not old balance
-    balanceAfter: finalPoints,
-  });
-
-  console.log(`User=${user.name}, Before=${currentPoints}, Event=${eventKey}, Δ=${delta}, After=${finalPoints}`);
-
-  return finalPoints;
-}
-export const applyPointsSrv_FE_Url = (eventKeyString) => api.post(`/users/points/apply`, { event: eventKeyString }, { withCredentials: true });
 // export const applyPointsSrv  = async (uid, eventKeyString) => {
 //   const eventPoints = {
 //     TIMEBLOCK_COMPLETE_CREDIT: 20, // ✅

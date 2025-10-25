@@ -37,7 +37,7 @@ export const checkMissedTimeblocks = async () => {
 
       // ✅ pass user._id explicitly
       await createViolationMessageService(user._id, "missed_block", block);
-      applyPointsSrv(user._id, "BLOCK_MISS_PENALTY");
+      applyPointsSrv("BLOCK_MISS_PENALTY");
       logger("log", user._id, user.name);
 
       logger("log", `⛔ Auto violation logged for user:${user._id} block:${block.task}`);

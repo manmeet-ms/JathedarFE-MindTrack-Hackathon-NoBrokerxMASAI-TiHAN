@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { useSound } from "react-sounds";
 import { toast } from "sonner";
 
-import { applyPointsSrv_FE_Url } from "../../services/points.service.js";
+import { applyPointsSrv } from "../../services/points.service.js";
 import { logUrgeService } from "../../services/urge.service.js";
 import { setPt } from "../../store/pointsSlice.js";
 import { EVENT_POINTS } from "../../utils/point.utils.js";
@@ -52,7 +52,7 @@ export default function UrgeInputForm({ refetchUrges }) {
   const urgeLocations = ["bedroom", "workspace", "alone", "in public"];
 
   const onSubmit = async (data) => {
-    const updatedPoints = await applyPointsSrv_FE_Url("URGE_LOGGED_CREDIT");
+    const updatedPoints = await applyPointsSrv("URGE_LOGGED_CREDIT");
     toast(`Points credited: ${EVENT_POINTS.URGE_LOGGED_CREDIT}. Great work`, {
       position: "top-center",
       description: `Updated Balance: ${updatedPoints.data.points}`,
