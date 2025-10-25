@@ -19,7 +19,7 @@ function RouteComponent() {
     }, []);
   return    <>
        <section className="flex flex-wrap gap-4">
-        <Link target="_blank" to="http://localhost:3000/api/auth/discord/login">
+        <Link target="_blank" to={`${import.meta.env.VITE_BACKEND_URL}/auth/discord/login`}>
           <Button>Login with Discord</Button>
         </Link>
       </section>
