@@ -10,7 +10,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "@tanstack/react-router";
 
 import { getQuotesSrv } from "../services/philosopher-quote.service";
 import { getTodayRitual } from "../services/ritual.service";

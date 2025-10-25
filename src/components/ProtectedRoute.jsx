@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "@tanstack/react-router";
 
 import { fetchUser } from "../store/authSlice";
 
@@ -30,7 +30,7 @@ export default ProtectedRoute;
 
 // import { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";
-// import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "@tanstack/react-router";
 
 // const ProtectedRoute = ({ authentication = true, children }) => {
 //   const navigate = useNavigate();

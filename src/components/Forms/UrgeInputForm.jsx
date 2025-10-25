@@ -7,12 +7,13 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { faker } from "@faker-js/faker";
+import { IconPlus } from "@tabler/icons-react";
+import { useNavigate } from "@tanstack/react-router";
 import dayjs from "dayjs";
 import { ShredderIcon } from "lucide-react";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useSound } from "react-sounds";
 import { toast } from "sonner";
 
@@ -20,7 +21,6 @@ import { applyPointsSrv } from "../../services/points.service.js";
 import { logUrgeService } from "../../services/urge.service.js";
 import { setPt } from "../../store/pointsSlice.js";
 import { EVENT_POINTS } from "../../utils/point.utils.js";
-import { IconPlus } from "@tabler/icons-react";
 
 export default function UrgeInputForm({ refetchUrges }) {
   const { user } = useSelector((state) => state.auth);
@@ -78,12 +78,13 @@ export default function UrgeInputForm({ refetchUrges }) {
     setOpen(false);
     reset();
   };
-   return (
+  return (
     <div className="flex flex-col gap-4">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button onClick={() => play()} variant="outline">
-            <IconPlus />Urge
+            <IconPlus />
+            Urge
             {/* <ShredderIcon /> Log Urge */}
           </Button>
         </DialogTrigger>
@@ -104,8 +105,8 @@ export default function UrgeInputForm({ refetchUrges }) {
                   <RadioGroup value={field.value} onValueChange={field.onChange} className="flex flex-wrap gap-4">
                     {Array.from({ length: 10 }).map((_, idx) => (
                       <div key={idx} className="flex items-center space-x-2">
-                        <RadioGroupItem className="size-5 border-2 border-foreground/40  cursor-pointer" value={`${idx +1}`} id={`intensity-${idx +1}`} />
-                        <Label htmlFor={`intensity-${idx +1}`}>{idx +1}</Label>
+                        <RadioGroupItem className="size-5 border-2 border-foreground/40  cursor-pointer" value={`${idx + 1}`} id={`intensity-${idx + 1}`} />
+                        <Label htmlFor={`intensity-${idx + 1}`}>{idx + 1}</Label>
                       </div>
                     ))}
                   </RadioGroup>

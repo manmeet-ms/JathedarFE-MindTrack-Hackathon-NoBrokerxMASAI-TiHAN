@@ -17,7 +17,7 @@ import dayjs from "dayjs";
 import { FlameKindlingIcon, PanelLeftIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "@tanstack/react-router";
 
 import { SIDENAV_DASH } from "../shared/appVariables.shared.js";
 import "./App.css";
@@ -314,6 +314,8 @@ const App = () => {
      <SheetDescription className="flex min-w-48 flex-col space-y-4 py-8 lg:flex">
       {SIDENAV_DASH.map(({ title, url, icon: Icon }) => {
       const isActive = pathname === url;
+      console.log(pathname);
+      
       return (
        <Link
        className={cn(

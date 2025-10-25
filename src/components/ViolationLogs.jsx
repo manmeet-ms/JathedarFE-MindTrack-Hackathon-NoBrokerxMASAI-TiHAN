@@ -1,27 +1,32 @@
+
 // TODO remove the reoslved violatrions form db and render on fe
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { IconArchive, IconFlagQuestion } from "@tabler/icons-react";
+import { IconArchive, IconFlagQuestion, IconRotate2 } from "@tabler/icons-react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { useSound } from "react-sounds";
 import { toast } from "sonner";
 
 import { EVENT_POINTS } from "../utils/point.utils";
 import { applyPointsSrv } from "../services/points.service";
-import { getViolations, resolveViolationSrv } from "../services/violation.service";
+import { getTodayViolationsSrv, getViolations, resolveViolationSrv } from "../services/violation.service";
 import { setPt } from "../store/pointsSlice";
 
 dayjs.extend(relativeTime);
 
 export function RecentViolations({ totalCount, violations , setViolations}) {
   const [localViolations, setLocalViolations] = useState(violations || []);
-
+  
+  const getViolationDemand =()=>{
+      getTodayViolationsSrv().then((res) => setLocalViolations(res.data || violations || []));
+  
+  }
   const dispatch = useDispatch();
   const { play } = useSound("ui/success_bling");
   useEffect(() => {
@@ -32,7 +37,15 @@ export function RecentViolations({ totalCount, violations , setViolations}) {
       <Card>
         <CardHeader>
           {/* <CardTitle>Violations Logs</CardTitle> */}
-          <CardDescription>No violations yet. Stay disciplined!</CardDescription>
+          <CardDescription className="flex flex-col gap-3 justify-center items-center" >
+            <p>No violations yet. Stay disciplined!</p>
+                                  <Button onClick={getViolationDemand} variant="outline" className="">
+                        {" "}
+                        <IconRotate2 /> Check for Violations
+                      </Button>
+
+</CardDescription>
+        
         </CardHeader>
       </Card>
     );

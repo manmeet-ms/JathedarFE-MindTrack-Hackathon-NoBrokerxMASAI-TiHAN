@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 import LandingHeader from "../Header/LandingHeader"
-import { Link } from "react-router-dom"
+import { Link } from "@tanstack/react-router"
 
 const Login = () => {
   return (

@@ -17,7 +17,7 @@ import dayjs from 'dayjs';
 import { SparklesIcon } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { checkInRitual, getTodayRitual } from '../../services/ritual.service';
 import { useSound } from "react-sounds";

@@ -12,7 +12,7 @@ import dayjs from "dayjs";
 import { DotIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 import { APP_NAME } from "../../../shared/appVariables.shared.js";
 import {   getUserSrv } from "../../services/user.service.js";
@@ -131,14 +131,14 @@ export const AppHeader = () => {
             <div className="  fixed  bottom-20  bg-background/40  backdrop-blur-2xl flex flex-nowrap items-center gap-2 rounded-full px-3 py-2 text-xs/4 whitespace-nowrap ring ring-gray-950/8 dark:ring-white/10 hover:bg-gray-950/2 hover:ring-gray-950/10 dark:hover:bg-white/5 dark:hover:ring-white/20 @max-[23rem]:hidden">
               <IconPercentage10 className="text-green-500 size-4 " />
               <span className="font-medium">
-                SSC Preparation - <b>Day {dayjs("2025-09-23").diff(dayjs().now, "days") * -1}</b>{" "}
+                Small Module - <b>Day {dayjs("2025-09-23").diff(dayjs().now, "days") * -1}</b>{" "}
               </span>
             </div>
           </div>
           <div className="ml-4 hidden md:flex flex-nowrap items-center gap-2 rounded-full px-3 py-2 text-xs/4 whitespace-nowrap ring ring-gray-950/8 dark:ring-white/10 hover:bg-gray-950/2 hover:ring-gray-950/10 dark:hover:bg-white/5 dark:hover:ring-white/20 @max-[23rem]:hidden">
             <IconPercentage10 className="text-green-500 size-4 " />
             <span className="font-medium">
-              SSC Preparation - <b>Day {dayjs("2025-09-23").diff(dayjs().now, "days") * -1}</b>{" "}
+              Small Module - <b>Day {dayjs("2025-09-23").diff(dayjs().now, "days") * -1}</b>{" "}
             </span>
           </div>
         </Link>

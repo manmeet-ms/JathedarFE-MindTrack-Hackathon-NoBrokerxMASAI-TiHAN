@@ -25,7 +25,7 @@ import dayjs from "dayjs";
 import { Tally1Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getUrgesService } from "../services/urge.service.js";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { usePageMeta } from "@/contexts/PageMetaContext";
 import { IconGrain } from "@tabler/icons-react";
 

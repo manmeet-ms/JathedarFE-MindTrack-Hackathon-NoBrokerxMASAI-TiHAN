@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Hero3 } from "@/components/hero3.tsx";
 import { Hero78 } from "@/components/hero78.tsx";
 import { AppHeader } from "@/components/Header/AppHeader";
