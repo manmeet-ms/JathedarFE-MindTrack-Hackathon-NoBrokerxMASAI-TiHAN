@@ -153,7 +153,7 @@ const Urges = () => {
 
  
  
-      <div className="mx-auto w-full max-w-6xl">
+      <div className=" w-full ">
         <Masonry columns={{ xs: 2, sm: 2, md: 3, xl: 4 }}>
           {fetchUrges.map((u, index) => {
             let pillBg;
