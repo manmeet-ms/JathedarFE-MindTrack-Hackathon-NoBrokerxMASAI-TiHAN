@@ -7,7 +7,6 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 // TODO:   send notifiaction
 // TODO: ask for agreemnt when resetting
 
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -24,12 +23,13 @@ import { useSound } from "react-sounds";
 import { toast } from "sonner";
 
 import { QUOTES } from "../../shared/constants.js";
-import { createChronosSrv, deleteChronosSrv, getChronosSrv, initializeChronosSrv, resetChronosSrv, updateChronosSrv } from "../services/chronos.service.js";
+
 import { applyPointsSrv } from "../services/points.service.js";
 import { setPt } from "../store/pointsSlice.js";
 import { EVENT_POINTS } from "../utils/point.utils.js";
 import { screenShake } from "../utils/screen-shake.utils.js";
 import Agreement from "./Agreement.jsx";
+import { getChronosSrv, resetChronosSrv } from "../services/chronos.service.js";
 
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
