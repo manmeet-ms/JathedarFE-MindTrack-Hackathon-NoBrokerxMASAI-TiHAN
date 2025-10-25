@@ -83,7 +83,7 @@ createRoot(document.getElementById("root")).render(
 if ("serviceWorker" in navigator && "PushManager" in window) {
   window.addEventListener("load", async () => {
     try {
-      const reg = await navigator.serviceWorker
+        await navigator.serviceWorker
         .register("/sw.js", { type: "module" })
         .then((reg) => console.log("Service worker registered", reg))
         .catch((err) => console.error("Service worker registration failed", err));
