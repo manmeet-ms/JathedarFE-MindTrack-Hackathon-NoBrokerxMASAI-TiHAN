@@ -96,7 +96,7 @@ Major life tasks
             <h1 className="title-font text-foreground my-6 mb-3 text-3xl font-medium">
               Things I am Managing
               <span className="text-muted-foreground block text-xl font-normal">
-                Check these, if you still think you've got time
+                Check these, if you still think you&apos;ve got time
               </span>
             </h1>
             {APP_LONG_DESCRIPTION.thingsImManaging.map((i, idx) => (

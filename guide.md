@@ -282,11 +282,11 @@ Let me know if you want this exported as a markdown doc or saved as a config/gui
 
 
 
-You're right — you've made excellent progress, and based on the original philosophy of your project (a discipline-enforcing PWA with urge tracking, rituals, timeblocks, and punishments), you've definitely crossed the MVP line. Here's a breakdown:
+You're right — you&apos;ve made excellent progress, and based on the original philosophy of your project (a discipline-enforcing PWA with urge tracking, rituals, timeblocks, and punishments), you&apos;ve definitely crossed the MVP line. Here's a breakdown:
 
 ---
 
-### ✅ What You've Built (Core MVP Done)
+### ✅ What You&apos;ve Built (Core MVP Done)
 
 #### ✅ Core Functionality
 

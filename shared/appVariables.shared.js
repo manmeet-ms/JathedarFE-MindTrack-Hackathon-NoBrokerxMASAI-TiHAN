@@ -1,5 +1,5 @@
 import { IconBrandTabler, IconFileSpark, IconGraph, IconHourglassEmpty, IconLayoutDashboard } from "@tabler/icons-react";
-import { CctvIcon, ChartLineIcon, GitCommitHorizontalIcon, MessageSquareIcon } from "lucide-react";
+import { CctvIcon, ChartLineIcon, GitCommitHorizontalIcon } from "lucide-react";
 
 export const APP_VERSION = "6.0.0";
 export const APP_NAME = "Jathedar";

@@ -7,16 +7,16 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { IconBolt, IconCalendar, IconCalendarBolt, IconPercentage10, IconTrendingDown, IconTrendingUp } from "@tabler/icons-react";
+import { IconBolt, IconPercentage10, IconTrendingDown, IconTrendingUp } from "@tabler/icons-react";
+import { Link } from "@tanstack/react-router";
 import dayjs from "dayjs";
 import { DotIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "@tanstack/react-router";
 
 import { APP_NAME } from "../../../shared/appVariables.shared.js";
-import {   getUserSrv } from "../../services/user.service.js";
 import { getPointsLedgerSrv } from "../../services/points.service.js";
+import { getUserSrv } from "../../services/user.service.js";
 
 export const AppHeader = () => {
   const points = useSelector((state) => state.points.value);
@@ -25,11 +25,7 @@ export const AppHeader = () => {
   // console.log("user as obj", { user });
 
   const [userProfile, setUserProfile] = useState();
-  async function getUserProfile() {
-    const userRes = await getUserSrv(user.id);
-    // console.log(userRes.data);
-    setUserProfile(userRes.data);
-  }
+ 
   const [pointsLedgerFe, setPointsLedgerFe] = useState([]);
   async function getPpointsFn() {
     const resLedger = await getPointsLedgerSrv();
@@ -86,38 +82,7 @@ export const AppHeader = () => {
   // }, [userAuthDataRedux]);
   // console.log("userDetailsDB", userDetailsDB);
 
-  const features = [
-    {
-      title: "Dashboard",
-      description: "Overview of your activity",
-      href: "#",
-    },
-    {
-      title: "Analytics",
-      description: "Track your performance",
-      href: "#",
-    },
-    {
-      title: "Settings",
-      description: "Configure your preferences",
-      href: "#",
-    },
-    {
-      title: "Integrations",
-      description: "Connect with other tools",
-      href: "#",
-    },
-    {
-      title: "Storage",
-      description: "Manage your files",
-      href: "#",
-    },
-    {
-      title: "Support",
-      description: "Get help when needed",
-      href: "#",
-    },
-  ];
+ 
 
   return (
     <section className="p-4 sticky top-0 z-10 bg-background">
@@ -199,7 +164,7 @@ export const AppHeader = () => {
               <Sheet>
                 <SheetTrigger>
                   {" "}
-                  <span variant="icon" className={cn("text-sm flex justify-center items-center px-3  gap-1.5  py-2   rounded-full bg-card    border border-accent ", points < 0 ? "text-red-600" : "")}>
+                  <span   className={cn("text-sm flex justify-center items-center px-3  gap-1.5  py-2   rounded-full bg-card    border border-accent ", points < 0 ? "text-red-600" : "")}>
                     <IconBolt size={16} />
                     {/* TODO: add the optiomization to add background job that periodically syncs with backd, since there will be many many evern tsin the whole day, so we need to minise the backedn calls */}
                     {Number.parseFloat(points ?? 0).toFixed(2)}
@@ -279,6 +244,7 @@ timestamps[] */}
       <DropdownMenuItem>Subscription</DropdownMenuItem> */}
                 </DropdownMenuContent>
               </DropdownMenu>
+<ModeToggle/>
             </div>
           ) : (
             <Link target="_blank" to={`${import.meta.env.VITE_BACKEND_URL}/auth/discord/login`}>

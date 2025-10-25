@@ -112,10 +112,10 @@ const YouVsAverageIdeal = () => {
                   <ol>
                     <li>learn articulation</li>
                     <li>you shoulds be reading manipulation books</li>
-                    <li>Books you've purchased complete them</li>
+                    <li>Books you&apos;ve purchased complete them</li>
                   </ol></div>
                   <div className="w-1/3 text-left ">
-                    <h1>where your ideal would've been</h1>
+                    <h1>where your ideal would&apos;ve been</h1>
                      
                   <ol>
                     <li>

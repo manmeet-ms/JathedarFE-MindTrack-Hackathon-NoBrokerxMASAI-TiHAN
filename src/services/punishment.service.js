@@ -2,6 +2,8 @@
 
 // checkMissedRitual
 
+import api from "./api.js";
+
 export const evaluatePunishmentsSrv=async ()=> await api.get("/punishments/evaluate-punishments")
 export const checkMissedTimeblocksSrv=async ()=> await api.get("/punishments/check-missed-timeblocks")
 export const checkForPunishmentsSrv=async ()=> await api.get("/punishments/check-for-punishments")

@@ -1,11 +1,10 @@
-import fs from "fs";
 import path from "path";
 import { defineConfig } from "vite";
 
-import mkcert from "vite-plugin-mkcert";
 import tailwindcss from "@tailwindcss/vite";
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import react from "@vitejs/plugin-react";
-import { tanstackRouter } from '@tanstack/router-plugin/vite'
+import mkcert from "vite-plugin-mkcert";
 
 // import { VitePWA } from "vite-plugin-pwa";
 // openssl req -x509 -newkey rsa:2048 -keyout certs/localhost-key.pem -out certs/localhost.pem -days 365 -nodes -subj "/CN=localhost"

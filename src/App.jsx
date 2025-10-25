@@ -1,10 +1,7 @@
 import BottomNav from "@/components/Footer/BottomNav.jsx";
-import RitualInputForm from "@/components/Forms/RitualInputForm.jsx";
 import UrgeInputForm from "@/components/Forms/UrgeInputForm.jsx";
 import { AppHeader } from "@/components/Header/AppHeader";
-import MoodTrackerLoggerButton from "@/components/MoodTrackerLoggerButton.jsx";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -12,24 +9,23 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { usePageMeta } from "@/contexts/PageMetaContext.jsx";
 import { cn } from "@/lib/utils";
 import api from "@/services/api";
-import { IconInfoCircle, IconMilitaryAward, IconPlus } from "@tabler/icons-react";
+import { IconInfoCircle, IconMilitaryAward } from "@tabler/icons-react";
+import { Link, Outlet, useLocation } from "@tanstack/react-router";
 import dayjs from "dayjs";
-import { FlameKindlingIcon, PanelLeftIcon } from "lucide-react";
+import { PanelLeftIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Outlet, useLocation } from "@tanstack/react-router";
 
 import { SIDENAV_DASH } from "../shared/appVariables.shared.js";
 import "./App.css";
 import { subscribeToPushSrv } from "./services/notification.service.js";
-import { flushRituals } from "./services/ritual.service";
-import { flushBlocks, initTimeBlocksSrv } from "./services/timeblock.service";
-import { flushViolations } from "./services/violation.service";
+ 
 import { fetchUser } from "./store/authSlice.js";
 import { fetchPoints } from "./store/pointsSlice.js";
 import { startOfflinePunisher } from "./utils/offline-punisher.js";
 import { getRankUtil } from "./utils/point.utils.js";
 import { saveScheduleOffline } from "./utils/sync.utils.js";
+import { initTimeBlocksSrv } from "./services/timeblock.service.js";
 
 const App = () => {
  const { meta } = usePageMeta();
@@ -56,10 +52,7 @@ const App = () => {
  } else if (hours >= 17 && hours <= 24) {
  Greet = "Good Evening";
  }
-
- // const baseURLAppJsx="http://localhost:3000/api"
- const baseURLAppJsx = import.meta.env.VITE_BACKEND_URL;
- // console.log(import.meta.env.VITE_BACKEND_URL);
+ 
 
  const [blocks, setBlocks] = useState([]);
  const [ritual, setRitual] = useState([]);
@@ -84,7 +77,7 @@ const App = () => {
  }
  function urlBase64ToUint8Array(base64String) {
  var padding = "=".repeat((4 - (base64String.length % 4)) % 4);
- var base64 = (base64String + padding).replace(/\-/g, "+").replace(/_/g, "/");
+ var base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
 
  var rawData = window.atob(base64);
  var outputArray = new Uint8Array(rawData.length);
@@ -151,15 +144,7 @@ const App = () => {
  api.get("/violations").then((res) => setViolations(res.data));
  }, []);
 
- const nukeCollections = () => {
- try {
-  flushBlocks();
-  flushRituals();
-  flushViolations();
- } catch (error) {
-  console.error(error.message);
- }
- };
+ 
 
  // const handleComplete = async (id) => {
  // await completeBlock(id);
@@ -290,9 +275,9 @@ const App = () => {
 
     <div className="relative flex flex-col justify-end overflow-hidden rounded-2xl px-6 pb-6 pt-40 max-w-sm ">
     <img src="/assets/npc.png" className=" absolute inset-0 h-full w-full object-cover" />
-    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-    <h3 className="z-10 mt-3 text-xl font-medium ">Don't be an NPC</h3>
-    <div className="z-10 gap-y-1 text-sm leading-6 text-accent-foreground/60"> It's fatal, take back control</div>
+    <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-gray-900/40"></div>
+    <h3 className="z-10 mt-3 text-xl font-medium ">Don&apos;t be an NPC</h3>
+    <div className="z-10 gap-y-1 text-sm leading-6 text-accent-foreground/60"> It&apos;s fatal, take back control</div>
     </div>
    </section>
    {/* {authStatus && <LogoutButton className="bg-accent text-sm font-medium py-2 rounded-full" />} */}
@@ -314,7 +299,7 @@ const App = () => {
      <SheetDescription className="flex min-w-48 flex-col space-y-4 py-8 lg:flex">
       {SIDENAV_DASH.map(({ title, url, icon: Icon }) => {
       const isActive = pathname === url;
-      console.log(pathname);
+      // console.log(pathname);
       
       return (
        <Link
@@ -337,7 +322,8 @@ const App = () => {
     </SheetContent>
     </Sheet>
     <div className="flex gap-2">
-    <RitualInputForm /> <UrgeInputForm refetchUrges={() => 0} />
+    {/* <RitualInputForm />  */}
+    <UrgeInputForm refetchUrges={() => 0} />
  
      
     </div>

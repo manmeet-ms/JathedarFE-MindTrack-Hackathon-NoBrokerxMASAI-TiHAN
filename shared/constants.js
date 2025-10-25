@@ -2311,7 +2311,7 @@ export const ogHardCodedTotalTasks = [
     parent_id: null,
     order: 8,
     content:
-      "[staff channel info-embed pin to top] Link various material you've made in discord embeds via messagesLink, Google docs in embed, bot command help in mentioned in embeds, green",
+      "[staff channel info-embed pin to top] Link various material you&apos;ve made in discord embeds via messagesLink, Google docs in embed, bot command help in mentioned in embeds, green",
     description: "Google docs, onboarding ppt, support channels, bot commands",
     is_completed: false,
     labels: ["dc-ada"],

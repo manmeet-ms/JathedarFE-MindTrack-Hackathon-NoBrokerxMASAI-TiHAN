@@ -1,12 +1,3 @@
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import { Separator } from "@/components/ui/separator";
 // TODO :   create a categoriezed bar chanr considtng triger:count multiple clolots
 import {
@@ -21,13 +12,13 @@ import Masonry from "@mui/lab/Masonry";
 import relativeTime from "dayjs/plugin/relativeTime";
  
 import { ChartBarInteractive } from "@/components/chart-bar-interactive.tsx";
+import { usePageMeta } from "@/contexts/PageMetaContext";
+import { IconGrain } from "@tabler/icons-react";
+import { Link } from "@tanstack/react-router";
 import dayjs from "dayjs";
 import { Tally1Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getUrgesService } from "../services/urge.service.js";
-import { Link } from "@tanstack/react-router";
-import { usePageMeta } from "@/contexts/PageMetaContext";
-import { IconGrain } from "@tabler/icons-react";
 
 const Urges = () => {
 
@@ -38,21 +29,21 @@ const Urges = () => {
   subtitle:'Impulse recognition and control mechanisms'
   });
     }, []);
-  const [pageQuery] = useSearchParams();
+  // const [pageQuery] = useSearchParams();
 
   const [fetchUrges, setfetchUrges] = useState([]);
   const [avgIntensity, setAvgIntensity] = useState();
   const [avgTimestamp, setAvgTimestamp] = useState();
   const [totalUrgesCount, setTotalUrgesCount] = useState();
 
-  let [currentPage, setCurrentPage] = useState(pageQuery.get("page") | 1);
-  console.log(currentPage, pageQuery.get("page"));
+  // let [currentPage, setCurrentPage] = useState(pageQuery.get("page") | 1);
+  // console.log(currentPage, pageQuery.get("page"));
 
   let datesSum = 0;
   let intensitiesSum = 0;
 
   useEffect(() => {
-    fetchUrges.map((item, idx) => {
+    fetchUrges.map((item) => {
       datesSum += dayjs(item.urgeTimeStamp).valueOf();
       intensitiesSum += item.urgeIntensity;
       setAvgTimestamp(dayjs(datesSum / fetchUrges.length).format("HH:mm"));

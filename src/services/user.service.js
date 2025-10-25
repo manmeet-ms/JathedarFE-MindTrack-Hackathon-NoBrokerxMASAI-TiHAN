@@ -1,18 +1,26 @@
 import api from "./api.js";
 
-export const registerUser = async (userData) => {
+export const registerUser = async (
+  //we will take `userData`
+) => {
   // Logic for registering a user
 };
 
-export const loginUser = async (credentials) => {
+export const loginUser = async (
+  //we will take `credentials`
+) => {
   // Logic for logging in a user
 };
 
-export const verifyUser = async (token) => {
+export const verifyUser = async (
+  //we will take `token`
+) => {
   // Logic for verifying a user
 };
 
-export const resetPassword = async (email) => {
+export const resetPassword = async (
+  //we will take `email`
+) => {
   // Logic for resetting a user's password
 };
 

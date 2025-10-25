@@ -5,17 +5,12 @@ import { RecentViolations } from "@/components/ViolationLogs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { usePageMeta } from "@/contexts/PageMetaContext";
-import { IconPercentage10 } from "@tabler/icons-react";
-import axios from "axios";
-import dayjs from "dayjs";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "@tanstack/react-router";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-import { getQuotesSrv } from "../services/philosopher-quote.service";
 import { getTodayRitual } from "../services/ritual.service";
 import { getViolations } from "../services/violation.service";
-import { PhilosophyQuoteCard } from "./PhilosophyQuotesUI";
 
 const Dashboard = () => {
   const { setPageMeta } = usePageMeta();
@@ -24,9 +19,7 @@ const Dashboard = () => {
     setPageMeta({ title: "Dashboard", subtitle: " Your mirror, centralized Monitoring" });
   }, []);
 
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
-
+ 
   const location = useLocation();
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -49,7 +42,7 @@ const Dashboard = () => {
   useEffect(() => {
     axios.get(`${baseURL}/analytics/summary`).then((res) => setStats(res.data));
     // axios.get(`${baseURL}/violations`).then((res) => setViolations(res.data));
-  }, []);
+  }, [baseURL]);
 
   useEffect(() => {
     //   getTodayBlocks().then((res) => setBlocks(res.data)); // in timeblock card already
@@ -59,12 +52,7 @@ const Dashboard = () => {
     getViolations().then((res) => setViolations(res.data));
   }, []);
 
-  const [quoteDataFe, setquoteDataFe] = useState({});
-  const arrowfunctionvariable = () => {
-    getQuotesSrv().then((res) => setquoteDataFe(res.data));
-    console.log(quoteDataFe);
-  };
-
+ 
   return (
     <>
       <div className="flex flex-1 flex-col">
@@ -149,7 +137,7 @@ const Dashboard = () => {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {ritual.map((r, idx) => (
+                      {ritual.map((r) => (
                         <TableRow key={r._id}>
                           <TableCell className="w-1/4">{r.date}</TableCell>
                           <TableCell className="">{r.vow}</TableCell>

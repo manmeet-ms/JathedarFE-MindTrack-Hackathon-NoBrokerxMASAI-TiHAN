@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useSound } from "react-sounds";
 import { toast } from "sonner";
 
@@ -22,7 +22,7 @@ dayjs.extend(relativeTime);
 
 export function RecentViolations({ totalCount, violations , setViolations}) {
   const [localViolations, setLocalViolations] = useState(violations || []);
-  
+  const navigate=useNavigate()
   const getViolationDemand =()=>{
       getTodayViolationsSrv().then((res) => setLocalViolations(res.data || violations || []));
   
@@ -32,7 +32,7 @@ export function RecentViolations({ totalCount, violations , setViolations}) {
   useEffect(() => {
     setLocalViolations(violations || []);
   }, [violations]);
-  if (violations?.length == 0)
+  if (localViolations?.length == 0)
     return (
       <Card>
         <CardHeader>
@@ -63,7 +63,7 @@ export function RecentViolations({ totalCount, violations , setViolations}) {
         <Link className=" " to="/violations">
           {" "}
           <Button variant="outline">
-            <IconArchive size={14} className="mb-0.25" />
+            <IconArchive size={14} className="mb-px" />
             Violation Archive
           </Button>
         </Link>
@@ -80,7 +80,7 @@ export function RecentViolations({ totalCount, violations , setViolations}) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {violations.map((v, idx) => (
+          {localViolations.map((v) => (
             <TableRow key={v._id}>
               <TableCell>{dayjs(v.timestamp).fromNow()}</TableCell>
            
@@ -110,7 +110,7 @@ export function RecentViolations({ totalCount, violations , setViolations}) {
                       description: `Updated Balance: ${updatedPoints.data.points}`,
                       action: {
                         label: "Back to work",
-                        onClick: () => navigate("/"),
+                        onClick: () => navigate({to:"/"}),
                       },
                     });
                     // console.log(v._id, v.uid);
@@ -134,6 +134,7 @@ export function RecentViolations({ totalCount, violations , setViolations}) {
 
 export function ViolationsLogsFull() {
   const dispatch = useDispatch();
+  const navigate=useNavigate()
   const { play } = useSound("ui/success_bling");
 
   const [violations, setViolations] = useState([]);
@@ -157,7 +158,7 @@ export function ViolationsLogsFull() {
     // console.log(todayViolations);
   }, []);
 
-  if (!violations?.length) return <p className="text-muted-foreground">No violations yet. Stay disciplined!</p>;
+  if (!todayViolations?.length) return <p className="text-muted-foreground">No violations yet. Stay disciplined!</p>;
 
   return (
     <div className="rounded-lg border mx-4 p-4">
@@ -229,7 +230,7 @@ export function ViolationsLogsFull() {
                       description: `Updated Balance: ${updatedPoints.data.points}`,
                       action: {
                         label: "Back to work",
-                        onClick: () => navigate("/"),
+                        onClick: () => navigate({to:"/"}),
                       },
                     });
                     // console.log(v._id, v.uid);

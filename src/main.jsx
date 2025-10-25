@@ -1,8 +1,7 @@
 // import Negatives from '@/pages/messages-notes/Negatives.jsx'
 // import Positives from '@/pages/messages-notes/Positives.jsx'
  
-import Login from "@/components/Auth/Login.jsx";
-import { ViolationsLogsFull } from "@/components/ViolationLogs.jsx";
+
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { PageMetaProvider } from "@/contexts/PageMetaContext.jsx";
@@ -12,7 +11,7 @@ import { Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider, createRouter } from '@tanstack/react-router'
-import { routeTree } from './routeTree.gen'
+import { routeTree } from './routeTree.gen.ts'
 
 import "./index.css";
 
