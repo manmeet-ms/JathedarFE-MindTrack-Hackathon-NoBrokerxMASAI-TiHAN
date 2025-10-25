@@ -7,6 +7,7 @@ import api from "./api.js";
 import { EVENT_POINTS } from "../utils/point.utils.js";
 
 export async function applyPointsSrv(userId, eventKey) {
+  
   const eventPoints = EVENT_POINTS;
   if (!eventPoints.hasOwnProperty(eventKey)) {
     throw new Error("Invalid event type");
