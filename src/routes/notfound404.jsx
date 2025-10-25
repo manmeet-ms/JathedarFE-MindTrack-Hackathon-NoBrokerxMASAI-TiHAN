@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
  
-import { Link } from 'react-router';
+import { Link } from '@tanstack/react-router';
 import { AppHeader } from '@/components/Header/AppHeader';
 
 export const Route = createFileRoute('/notfound404')({
