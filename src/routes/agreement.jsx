@@ -1,5 +1,8 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { usePageMeta } from "@/contexts/PageMetaContext";
+
+import ProtectedLayout from "@/components/ProtectedLayout";
+
 import Masonry from '@mui/lab/Masonry';
 import { createFileRoute } from '@tanstack/react-router';
 import {
@@ -23,7 +26,7 @@ function RouteComponent() {
 subtitle:'Commitments and Promises to Oneself'
 });
   }, []);
-  return   (<>
+  return   (<ProtectedLayout>
     
       <section className="bg-background flex h-full flex-wrap overflow-hidden rounded-lg px-4">
        <div className="grid grid-cols-3">
@@ -125,5 +128,5 @@ Major life tasks
                       </Button>
                     </div> */}
       </section>
-    </>)
+    </ProtectedLayout>)
 }

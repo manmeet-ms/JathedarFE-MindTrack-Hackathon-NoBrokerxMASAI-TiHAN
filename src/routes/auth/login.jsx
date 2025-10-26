@@ -7,7 +7,6 @@ import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-
 import { loginUserSrv } from "../../services/auth.service";
 import { fetchUser } from "../../store/authSlice";
 
@@ -41,14 +40,17 @@ function RouteComponent() {
   };
   return (
     <>
+    {/* <AppHeader/> */}
       <div className={cn("px-6 w-2/3 mx-auto flex flex-col gap-4")}>
         <Card className="overflow-hidden p-0">
           <CardContent className="grid p-0 md:grid-cols-2">
-            <form onSubmit={handleSubmit(onSubmit)} className="p-6 md:p-8">
+<Button>Login with Discord</Button>
+
+             <form onSubmit={handleSubmit(onSubmit)} className="p-6 md:p-8">
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col items-center text-center">
                   <h1 className="text-2xl font-bold">Welcome back</h1>
-                  <p className="text-muted-foreground text-balance">Login to your Shastarkosh account</p>
+                  <p className="text-muted-foreground text-balance">Login to your Jathedar account</p>
                 </div>
                 <div className="grid gap-3">
                   <Label htmlFor="email">Email</Label>
@@ -110,7 +112,8 @@ function RouteComponent() {
                   </Link>
                 </div>
               </div>
-            </form>
+            </form>  
+
             <div className="bg-muted relative hidden md:block">
               <img src="/placeholder.svg" alt="Image" className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale" />
             </div>

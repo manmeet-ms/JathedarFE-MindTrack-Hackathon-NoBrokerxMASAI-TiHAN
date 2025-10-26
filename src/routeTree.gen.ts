@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ViolationsRouteImport } from './routes/violations'
 import { Route as UrgesRouteImport } from './routes/urges'
 import { Route as TimelineRouteImport } from './routes/timeline'
 import { Route as SettingsRouteImport } from './routes/settings'
@@ -22,6 +23,7 @@ import { Route as BetaRouteImport } from './routes/beta'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as AgreementRouteImport } from './routes/agreement'
 import { Route as PRouteRouteImport } from './routes/p/route'
+import { Route as AuthRouteRouteImport } from './routes/auth/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PPhilosophyRouteImport } from './routes/p/philosophy'
 import { Route as PLandingRouteImport } from './routes/p/landing'
@@ -30,6 +32,11 @@ import { Route as PAboutRouteImport } from './routes/p/about'
 import { Route as AuthRegisterRouteImport } from './routes/auth/register'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
 
+const ViolationsRoute = ViolationsRouteImport.update({
+  id: '/violations',
+  path: '/violations',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UrgesRoute = UrgesRouteImport.update({
   id: '/urges',
   path: '/urges',
@@ -95,6 +102,11 @@ const PRouteRoute = PRouteRouteImport.update({
   path: '/p',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRouteRoute = AuthRouteRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -121,18 +133,19 @@ const PAboutRoute = PAboutRouteImport.update({
   getParentRoute: () => PRouteRoute,
 } as any)
 const AuthRegisterRoute = AuthRegisterRouteImport.update({
-  id: '/auth/register',
-  path: '/auth/register',
-  getParentRoute: () => rootRouteImport,
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 const AuthLoginRoute = AuthLoginRouteImport.update({
-  id: '/auth/login',
-  path: '/auth/login',
-  getParentRoute: () => rootRouteImport,
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRouteRouteWithChildren
   '/p': typeof PRouteRouteWithChildren
   '/agreement': typeof AgreementRoute
   '/analytics': typeof AnalyticsRoute
@@ -146,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof SettingsRoute
   '/timeline': typeof TimelineRoute
   '/urges': typeof UrgesRoute
+  '/violations': typeof ViolationsRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
   '/p/about': typeof PAboutRoute
@@ -155,6 +169,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRouteRouteWithChildren
   '/p': typeof PRouteRouteWithChildren
   '/agreement': typeof AgreementRoute
   '/analytics': typeof AnalyticsRoute
@@ -168,6 +183,7 @@ export interface FileRoutesByTo {
   '/settings': typeof SettingsRoute
   '/timeline': typeof TimelineRoute
   '/urges': typeof UrgesRoute
+  '/violations': typeof ViolationsRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
   '/p/about': typeof PAboutRoute
@@ -178,6 +194,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRouteRouteWithChildren
   '/p': typeof PRouteRouteWithChildren
   '/agreement': typeof AgreementRoute
   '/analytics': typeof AnalyticsRoute
@@ -191,6 +208,7 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRoute
   '/timeline': typeof TimelineRoute
   '/urges': typeof UrgesRoute
+  '/violations': typeof ViolationsRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
   '/p/about': typeof PAboutRoute
@@ -202,6 +220,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/p'
     | '/agreement'
     | '/analytics'
@@ -215,6 +234,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/timeline'
     | '/urges'
+    | '/violations'
     | '/auth/login'
     | '/auth/register'
     | '/p/about'
@@ -224,6 +244,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/p'
     | '/agreement'
     | '/analytics'
@@ -237,6 +258,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/timeline'
     | '/urges'
+    | '/violations'
     | '/auth/login'
     | '/auth/register'
     | '/p/about'
@@ -246,6 +268,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/auth'
     | '/p'
     | '/agreement'
     | '/analytics'
@@ -259,6 +282,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/timeline'
     | '/urges'
+    | '/violations'
     | '/auth/login'
     | '/auth/register'
     | '/p/about'
@@ -269,6 +293,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren
   PRouteRoute: typeof PRouteRouteWithChildren
   AgreementRoute: typeof AgreementRoute
   AnalyticsRoute: typeof AnalyticsRoute
@@ -282,12 +307,18 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   TimelineRoute: typeof TimelineRoute
   UrgesRoute: typeof UrgesRoute
-  AuthLoginRoute: typeof AuthLoginRoute
-  AuthRegisterRoute: typeof AuthRegisterRoute
+  ViolationsRoute: typeof ViolationsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/violations': {
+      id: '/violations'
+      path: '/violations'
+      fullPath: '/violations'
+      preLoaderRoute: typeof ViolationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/urges': {
       id: '/urges'
       path: '/urges'
@@ -379,6 +410,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -416,20 +454,34 @@ declare module '@tanstack/react-router' {
     }
     '/auth/register': {
       id: '/auth/register'
-      path: '/auth/register'
+      path: '/register'
       fullPath: '/auth/register'
       preLoaderRoute: typeof AuthRegisterRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthRouteRoute
     }
     '/auth/login': {
       id: '/auth/login'
-      path: '/auth/login'
+      path: '/login'
       fullPath: '/auth/login'
       preLoaderRoute: typeof AuthLoginRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthRouteRoute
     }
   }
 }
+
+interface AuthRouteRouteChildren {
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
+}
+
+const AuthRouteRouteChildren: AuthRouteRouteChildren = {
+  AuthLoginRoute: AuthLoginRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
+}
+
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
+)
 
 interface PRouteRouteChildren {
   PAboutRoute: typeof PAboutRoute
@@ -450,6 +502,7 @@ const PRouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRouteRoute: AuthRouteRouteWithChildren,
   PRouteRoute: PRouteRouteWithChildren,
   AgreementRoute: AgreementRoute,
   AnalyticsRoute: AnalyticsRoute,
@@ -463,8 +516,7 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   TimelineRoute: TimelineRoute,
   UrgesRoute: UrgesRoute,
-  AuthLoginRoute: AuthLoginRoute,
-  AuthRegisterRoute: AuthRegisterRoute,
+  ViolationsRoute: ViolationsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

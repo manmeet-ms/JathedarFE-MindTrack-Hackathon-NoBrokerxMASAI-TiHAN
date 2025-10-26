@@ -1,4 +1,5 @@
 import { ChartBarInteractive } from "@/components/chart-bar-interactive.tsx";
+import ProtectedLayout from "@/components/ProtectedLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { usePageMeta } from "@/contexts/PageMetaContext";
@@ -6,7 +7,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Bar, BarChart, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-
+ 
+import { ChartLineDots } from '@/components/Charts/ChartLineDots.tsx';
+import { Calendar } from '@/components/ui/calendar';
 const data = {
   streaks: [
     { date: "Jul 20", value: 1 },
@@ -68,11 +71,12 @@ function RouteComponent() {
   useEffect(() => {
     fetchAnalytics();
   }, []);
+const [date, setDate] =  useState(new Date())
 
   if (!data) return <div className="changed-px p-4">Loading...</div>;
-
+ 
   return (
-    <>
+    <ProtectedLayout>
 
       <Tabs value={tab} onValueChange={setTab} className="space-y-4">
         <TabsList>
@@ -160,14 +164,20 @@ function RouteComponent() {
           <div className="flex flex-col gap-4 md:py-6">
           
             <div className="grid grid-cols-1 items-start gap-4  md:grid-cols-2 lg:changed-px px-4">
-              <ChartBarInteractive title="Streaks" urges={fetchUrges} />
-              <ChartBarInteractive title="Completed vs Missed" urges={fetchUrges} />
+ <Calendar
+    mode="single"
+    selected={date}
+    onSelect={setDate}
+    className="rounded-lg border"/>
+               <ChartLineDots  />
+               <ChartLineDots  />
+               <ChartLineDots  />
               <ChartBarInteractive title="Mood Tracker" urges={fetchUrges} />
               <ChartBarInteractive title="Ritual History" urges={fetchUrges} />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </ProtectedLayout>
   );
 }

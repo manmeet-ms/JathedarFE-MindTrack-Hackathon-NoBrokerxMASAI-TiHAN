@@ -1,5 +1,10 @@
 "use client";
-
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { ModeToggle } from "@/components/mode-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -7,7 +12,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { IconBolt, IconPercentage10, IconTrendingDown, IconTrendingUp } from "@tabler/icons-react";
+import { IconBolt, IconPercentage10, IconPlus, IconTrendingDown, IconTrendingUp } from "@tabler/icons-react";
 import { Link } from "@tanstack/react-router";
 import dayjs from "dayjs";
 import { DotIcon } from "lucide-react";
@@ -38,7 +43,7 @@ export const AppHeader = () => {
 
   useEffect(() => {
     if (user && user.id) {
-      getUserSrv(user.id).then((userRes) => { 
+      getUserSrv(user.id).then((userRes) => {
         console.log(userRes.data);
         setUserProfile(userRes.data);
       });
@@ -90,21 +95,31 @@ export const AppHeader = () => {
           {" "}
           <img src="/logo.png" className="bg-white rounded p-1.5 py-2" alt="Shadcn UI Navbar" />
           <span className="text-lg font-semibold tracking-tighter">{APP_NAME}</span>
-          <div className="block md:hidden  ">
+          <section className="flex gap-2 ml-4 ">
             {" "}
-            <div className="  fixed  bottom-20  bg-background/40  backdrop-blur-2xl flex flex-nowrap items-center gap-2 rounded-full px-3 py-2 text-xs/4 whitespace-nowrap ring ring-gray-950/8 dark:ring-white/10 hover:bg-gray-950/2 hover:ring-gray-950/10 dark:hover:bg-white/5 dark:hover:ring-white/20 @max-[23rem]:hidden">
+            <div className="hidden md:flex flex-nowrap items-center gap-2 rounded-full px-3 py-2 text-xs/4 whitespace-nowrap ring ring-gray-950/8 dark:ring-white/10 hover:bg-gray-950/2 hover:ring-gray-950/10 dark:hover:bg-white/5 dark:hover:ring-white/20 @max-[23rem]:hidden">
               <IconPercentage10 className="text-green-500 size-4 " />
               <span className="font-medium">
                 Small Module - <b>Day {dayjs("2025-09-23").diff(dayjs().now, "days") * -1}</b>{" "}
               </span>
             </div>
-          </div>
-          <div className="ml-4 hidden md:flex flex-nowrap items-center gap-2 rounded-full px-3 py-2 text-xs/4 whitespace-nowrap ring ring-gray-950/8 dark:ring-white/10 hover:bg-gray-950/2 hover:ring-gray-950/10 dark:hover:bg-white/5 dark:hover:ring-white/20 @max-[23rem]:hidden">
-            <IconPercentage10 className="text-green-500 size-4 " />
-            <span className="font-medium">
-              Small Module - <b>Day {dayjs("2025-09-23").diff(dayjs().now, "days") * -1}</b>{" "}
-            </span>
-          </div>
+            <div className="hidden md:flex flex-nowrap items-center gap-2 rounded-full px-3 py-2 text-xs/4 whitespace-nowrap ring ring-gray-950/8 dark:ring-white/10 hover:bg-gray-950/2 hover:ring-gray-950/10 dark:hover:bg-white/5 dark:hover:ring-white/20 @max-[23rem]:hidden">
+              <IconPercentage10 className="text-green-500 size-4 " />
+              <span className="font-medium">
+                Small Module - <b>Day {dayjs("2025-09-23").diff(dayjs().now, "days") * -1}</b>{" "}
+              </span>
+            </div>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>  <span   className="rounded-full p-2 flex items-center justify-center bg-gray-400/10 border border-muted-foreground/10">
+              <IconPlus className="text-green-500 size-4" /> 
+            </span></TooltipTrigger>
+              <TooltipContent>
+                <p>Set upto two major goals</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          </section>
         </Link>
         {/* // TODO: refactor Nav logic */}
         <section className="flex gap-2 items-center">
@@ -246,7 +261,7 @@ timestamps[] */}
               <ModeToggle />
             </div>
           ) : (
-            <Link target="_blank" to={`${import.meta.env.VITE_BACKEND_URL}/auth/discord/login`}>
+            <Link to={`${import.meta.env.VITE_BACKEND_URL}/auth/discord/login`}>
               <Button>Login</Button>
             </Link>
           )}

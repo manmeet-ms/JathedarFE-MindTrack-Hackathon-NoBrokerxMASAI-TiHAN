@@ -80,7 +80,7 @@ export function RecentViolations({ totalCount, violations , setViolations}) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {localViolations.map((v) => (
+          {violations.map((v) => (
             <TableRow key={v._id}>
               <TableCell>{dayjs(v.timestamp).fromNow()}</TableCell>
            
@@ -158,7 +158,7 @@ export function ViolationsLogsFull() {
     // console.log(todayViolations);
   }, []);
 
-  if (!todayViolations?.length) return <p className="text-muted-foreground">No violations yet. Stay disciplined!</p>;
+  if (!violations?.length) return <p className="text-muted-foreground">No violations yet. Stay disciplined!</p>;
 
   return (
     <div className="rounded-lg border mx-4 p-4">

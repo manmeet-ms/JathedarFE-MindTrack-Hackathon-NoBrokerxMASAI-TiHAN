@@ -10,16 +10,18 @@ import store from "@/store/store.js";
 import { Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { RouterProvider, createRouter, notFound } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen.ts'
 
 import "./index.css";
+import NotFound from "./components/NotFound.jsx";
 
   
 const router = createRouter({
   routeTree,
   defaultPreload: 'intent',
   scrollRestoration: true,
+  defaultNotFoundComponent:NotFound
 })
 
 // const router = createBrowserRouter([

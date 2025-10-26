@@ -1,6 +1,6 @@
 "use client";
 import { createFileRoute } from '@tanstack/react-router'
-
+import Loader from "@/components/Loader.jsx"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 // TODO:   add ind timeone
 // TODO: failures nmotification here as well , in public discord and violations and hall of shame and histry, urges, notificaiton public discord server messag e
@@ -31,6 +31,7 @@ import { EVENT_POINTS } from "../utils/point.utils.js";
 import { screenShake } from "../utils/screen-shake.utils.js";
 import Agreement from "../pages/Agreement.jsx";
 import { getChronosSrv, resetChronosSrv } from "../services/chronos.service.js";
+import ProtectedLayout from "@/components/ProtectedLayout";
 
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
@@ -146,7 +147,7 @@ function RouteComponent() {
     }, []);
   
   return (
-    <>
+    <ProtectedLayout>
           <main className=" grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-4 space-y-4 px-4">
             <section className="col-span-2 flex flex-col gap-4">
               {timers.length !== 0
@@ -419,7 +420,7 @@ function RouteComponent() {
                     );
                   })
                 :  
-    "Refresh to initialize timers"
+    <Loader/>
                 }
             </section>
             <section>
@@ -466,6 +467,6 @@ function RouteComponent() {
               </div>
             </section>
           </main>
-        </>
+        </ProtectedLayout>
   )
 }

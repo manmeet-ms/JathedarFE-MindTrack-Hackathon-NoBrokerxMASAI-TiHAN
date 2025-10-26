@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
+import ProtectedLayout from "@/components/ProtectedLayout";
 
 import { applyPointsSrv } from "../services/points.service";
 import { createHourlyCheckinSrv, getHourlyCheckinsSrv } from "../services/user.service";
@@ -97,7 +98,7 @@ function RouteComponent() {  const moods = ["Happy", "Anxious", "Angry", "Stress
   //   ],
   // };
 
-  return <>
+  return <ProtectedLayout>
         <section className="p-4">
           <div className="md:hidden mb-4  border-b flex flex-col gap-0   pb-4">
             <h2 className="flex items-center gap-2 text-xl font-semibold">
@@ -303,5 +304,5 @@ function RouteComponent() {  const moods = ["Happy", "Anxious", "Angry", "Stress
         </section>
   
         {/* <Button onClick={() => sendTestNotification(payload)}>push</Button> */}
-      </>
+      </ProtectedLayout>
 }

@@ -20,6 +20,7 @@ import dayjs from "dayjs";
 import { Tally1Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getUrgesService } from "../services/urge.service.js";
+import ProtectedLayout from "@/components/ProtectedLayout";
 
 export const Route = createFileRoute('/urges')({
   component: RouteComponent,
@@ -69,7 +70,9 @@ function RouteComponent() {
   // console.log("fetchUrges", fetchUrges);
 
   dayjs.extend(relativeTime);
-  return <div className="flex flex-col gap-4 p-4">
+  return (
+    <ProtectedLayout>
+      <div className="flex flex-col gap-4 p-4">
       {/* <UrgeInputForm refetchUrges={getUrgesOnThisPage} /> */}
       {/* <div className="fixed bottom-24 right-6" ><UrgeInputForm/></div> */}
       <div className="grid items-center justify-center gap-4 sm:grid-cols-1 lg:grid-cols-4">
@@ -228,4 +231,6 @@ function RouteComponent() {
       </div>
     
     </div>
+    </ProtectedLayout>
+  )
 }

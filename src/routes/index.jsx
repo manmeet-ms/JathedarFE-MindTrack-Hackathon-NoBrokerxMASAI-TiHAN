@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 import { getTodayRitual } from "../services/ritual.service";
 import { getViolations } from "../services/violation.service";
-
+import ProtectedLayout from "@/components/ProtectedLayout";
 export const Route = createFileRoute("/")({
   component: RouteComponent,
 });
@@ -64,7 +64,7 @@ function RouteComponent() {
 
  
   return (
-    <>
+    <ProtectedLayout>
       <div className="flex flex-1 flex-col">
         <div className="@container/main flex flex-1 flex-col gap-2">
           <div className="flex flex-col gap-4 md:py-6">
@@ -185,6 +185,6 @@ function RouteComponent() {
           </div>
         </div>
       </div>
-    </>
+    </ProtectedLayout>
   );
 }
