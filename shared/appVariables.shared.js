@@ -26,7 +26,7 @@ export const SIDENAV_DASH = [
     // icon: PaperclipIcon,
   },
   {
-    title: "Chronos",
+    title: "Habits",
     url: "/chronos",
     icon: IconHourglassEmpty,
   },

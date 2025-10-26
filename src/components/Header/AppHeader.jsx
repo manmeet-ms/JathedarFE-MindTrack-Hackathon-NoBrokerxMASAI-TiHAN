@@ -93,9 +93,9 @@ export const AppHeader = () => {
       <nav className="flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           {" "}
-          <img src="/logo.png" className="bg-white rounded p-1.5 py-2" alt="Shadcn UI Navbar" />
+          <img src="/logo.png" className="bg-white rounded    p-1.5 py-2" alt="Shadcn UI Navbar" />
           <span className="text-lg font-semibold tracking-tighter">{APP_NAME}</span>
-          <section className="flex gap-2 ml-4 ">
+          {/* <section className="flex gap-2 ml-4 ">
             {" "}
             <div className="hidden md:flex flex-nowrap items-center gap-2 rounded-full px-3 py-2 text-xs/4 whitespace-nowrap ring ring-gray-950/8 dark:ring-white/10 hover:bg-gray-950/2 hover:ring-gray-950/10 dark:hover:bg-white/5 dark:hover:ring-white/20 @max-[23rem]:hidden">
               <IconPercentage10 className="text-green-500 size-4 " />
@@ -119,7 +119,7 @@ export const AppHeader = () => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          </section>
+          </section> */}
         </Link>
         {/* // TODO: refactor Nav logic */}
         <section className="flex gap-2 items-center">

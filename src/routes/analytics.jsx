@@ -1,14 +1,14 @@
 import { ChartBarInteractive } from "@/components/chart-bar-interactive.tsx";
 import ProtectedLayout from "@/components/ProtectedLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { usePageMeta } from "@/contexts/PageMetaContext";
 import { createFileRoute } from "@tanstack/react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Bar, BarChart, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
  
+import { ChartBarMultiple } from '@/components/Charts/ChartBarMultiple.tsx';
 import { ChartLineDots } from '@/components/Charts/ChartLineDots.tsx';
+import { ChartLineMoodTracker } from '@/components/Charts/ChartLineMoodTracker.tsx';
 import { Calendar } from '@/components/ui/calendar';
 const data = {
   streaks: [
@@ -77,72 +77,27 @@ const [date, setDate] =  useState(new Date())
  
   return (
     <ProtectedLayout>
-
-      <Tabs value={tab} onValueChange={setTab} className="space-y-4">
-        <TabsList>
-          <TabsTrigger value="streaks">Streaks</TabsTrigger>
-          <TabsTrigger value="completions">Completed vs Missed</TabsTrigger>
-          <TabsTrigger value="moods">Mood Tracker</TabsTrigger>
-          <TabsTrigger value="rituals">Ritual History</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="streaks">
-          <Card>
-            <CardHeader>
-              <CardTitle>Streaks Over Days</CardTitle>
-            </CardHeader>
-            <CardContent className="h-60">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={data.streaks}>
-                  <XAxis dataKey="date" />
-                  <YAxis allowDecimals={false} />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="value" stroke="#16a34a" strokeWidth={2} />
-                </LineChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="completions">
-          <Card>
-            <CardHeader>
-              <CardTitle>Completed vs Missed Blocks</CardTitle>
-            </CardHeader>
-            <CardContent className="h-60">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={data.completions}>
-                  <XAxis dataKey="date" />
-                  <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="completed" fill="#22c55e" name="Completed" />
-                  <Bar dataKey="missed" fill="#ef4444" name="Missed" />
-                </BarChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="moods">
-          <Card>
-            <CardHeader>
-              <CardTitle>Mood Over the Day</CardTitle>
-            </CardHeader>
-            <CardContent className="h-60">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={data.moods}>
-                  <XAxis dataKey="hour" />
-                  <YAxis domain={[1, 5]} allowDecimals={false} />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="mood" stroke="#3b82f6" strokeWidth={2} />
-                </LineChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="rituals">
-          <Card>
+ 
+      <div className="flex flex-1 flex-col">
+        <div className="@container/main flex flex-1 flex-col gap-2">
+          <div className="flex flex-col gap-4 md:py-6">
+          
+            <div className="grid grid-cols-1 items-start gap-4  md:grid-cols-2 lg:changed-px px-4">
+ <div>
+      <Calendar
+        mode='single'
+        selected={date}
+        onSelect={setDate}
+        className='rounded-lg border [--cell-size:--spacing(11)] md:[--cell-size:--spacing(13)]'
+      />
+      <p className='text-muted-foreground mt-3 text-center text-xs' role='region'>
+        Streak Calendar 
+      </p>
+    </div>
+                   <ChartLineDots  />
+                   <ChartBarMultiple  />
+                   <ChartLineMoodTracker  />
+ <Card>
             <CardHeader>
               <CardTitle>Ritual Check-In History</CardTitle>
             </CardHeader>
@@ -157,24 +112,7 @@ const [date, setDate] =  useState(new Date())
               </ul>
             </CardContent>
           </Card>
-        </TabsContent>
-      </Tabs>
-      <div className="flex flex-1 flex-col">
-        <div className="@container/main flex flex-1 flex-col gap-2">
-          <div className="flex flex-col gap-4 md:py-6">
-          
-            <div className="grid grid-cols-1 items-start gap-4  md:grid-cols-2 lg:changed-px px-4">
- <Calendar
-    mode="single"
-    selected={date}
-    onSelect={setDate}
-    className="rounded-lg border"/>
-               <ChartLineDots  />
-               <ChartLineDots  />
-               <ChartLineDots  />
-              <ChartBarInteractive title="Mood Tracker" urges={fetchUrges} />
-              <ChartBarInteractive title="Ritual History" urges={fetchUrges} />
-            </div>
+                      </div>
           </div>
         </div>
       </div>

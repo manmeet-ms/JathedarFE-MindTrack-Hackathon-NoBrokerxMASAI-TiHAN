@@ -45,26 +45,48 @@ import { useSelector } from "react-redux";
 import { toast } from "sonner";
 
 export const ProtectedLayout = ({ children }) => {
-  const { user } = useSelector((state) => state.auth);
+  const { user,status } = useSelector((state) => state.auth);
+  
   const navigate = useNavigate();
 
   // Show toast and redirect only if user is not logged in
   const pathname = useLocation().pathname; // useLocation().pathname if React Router
 
-  useEffect(() => {
-    if (!user) {
-      toast.error("You have to be logged in to do that action");
-      // toast.warning("You have to be logged in to do that action");
-      console.log(pathname);
 
-      navigate({ to: "/auth/login" });
-    } else if (user !== null && pathname === "/auth/login") {
-      console.log(pathname, user !== null && pathname === "/auth/login");
-      toast.success("You are already logged in. Navigating Home");
+   useEffect(() => {
+     // Wait until auth check finishes
+     if (status === "loading" || status === "idle" || status === undefined) {
+       return;
+     }
+ 
+     if (!user) {
+       toast.error("You have to be logged in to do that action");
+       navigate({ to: "/auth/login" });
+       return;
+     }
+ 
+     // If user is present and current path is login, redirect to home
+     if (user && pathname === "/auth/login") {
+       toast.success("You are already logged in. Navigating Home");
+       navigate({ to: "/" });
+     }
+   }, [user, status, navigate, pathname]);   
 
-      navigate({ to: "/" }); 
-    }
-  }, [user, navigate,pathname]);   
+   // useEffect(() => {
+    
+  //   if (!user) {
+  //     toast.error("You have to be logged in to do that action");
+  //     // toast.warning("You have to be logged in to do that action");
+  //     console.log(pathname);
+
+  //     navigate({ to: "/auth/login" });
+  //   } else if (user !== null && pathname === "/auth/login") {
+  //     console.log(pathname, user !== null && pathname === "/auth/login");
+  //     toast.success("You are already logged in. Navigating Home");
+
+  //     navigate({ to: "/" }); 
+  //   }
+  // }, [user, navigate,pathname]);   
 
   // Only render children if user is logged in
   return user ? <>{children}</> : null;

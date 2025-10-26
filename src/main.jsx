@@ -7,14 +7,15 @@ import { Toaster } from "@/components/ui/sonner";
 import { PageMetaProvider } from "@/contexts/PageMetaContext.jsx";
  
 import store from "@/store/store.js";
-import { Suspense } from "react";
+import { RouterProvider, createRouter } from '@tanstack/react-router';
+import { Suspense, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
-import { RouterProvider, createRouter, notFound } from '@tanstack/react-router'
-import { routeTree } from './routeTree.gen.ts'
+import { Provider, useDispatch } from "react-redux";
+import { routeTree } from './routeTree.gen.ts';
 
-import "./index.css";
 import NotFound from "./components/NotFound.jsx";
+import "./index.css";
+import { fetchUser } from "./store/authSlice.js";
 
   
 const router = createRouter({
@@ -68,13 +69,22 @@ const router = createRouter({
 //   },
 //   { path: "*", element: <NotFound404 /> },
 // ]);
+function AppInit() {
+  const dispatch = useDispatch();
+  // run auth check once on app init
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
 
+  return <RouterProvider router={router} />;
+}
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Suspense fallback={<div>Loading...</div>}>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <PageMetaProvider>
           <RouterProvider router={router}></RouterProvider>
+           <AppInit />
           <Toaster />
         </PageMetaProvider>
       </ThemeProvider>

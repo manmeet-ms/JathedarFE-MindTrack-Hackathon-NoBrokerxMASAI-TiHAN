@@ -39,10 +39,10 @@ export function RecentViolations({ totalCount, violations , setViolations}) {
           {/* <CardTitle>Violations Logs</CardTitle> */}
           <CardDescription className="flex flex-col gap-3 justify-center items-center" >
             <p>No violations yet. Stay disciplined!</p>
-                                  <Button onClick={getViolationDemand} variant="outline" className="">
+                                  {/* <Button onClick={getViolationDemand} variant="outline" className="">
                         {" "}
                         <IconRotate2 /> Check for Violations
-                      </Button>
+                      </Button> */}
 
 </CardDescription>
         

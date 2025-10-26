@@ -32,7 +32,7 @@ type TimerStreakData = {
   data: { x: number; y: number }[];
 };
 
-export function ChartLineDots() {
+export function ChartLineMoodTracker() {
   const [chartData, setChartData] = useState<Record<string, any>[]>([]);
   const [chartConfig, setChartConfig] = useState<
     Record<string, { label: string; color?: string }>
@@ -107,14 +107,14 @@ export function ChartLineDots() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Timer Reset Intervals</CardTitle>
+        <CardTitle>Mood tracker</CardTitle>
         <CardDescription>
-          Y = Time gap (hours) between consecutive resets
+          Lorem ipsum dolor sit amet.
         </CardDescription>
       </CardHeader>
 
       <CardContent>
-        <ChartContainer config={chartConfig} className=" w-full">
+        <ChartContainer config={chartConfig} className="  w-full">
           <ResponsiveContainer>
             <LineChart
               accessibilityLayer
