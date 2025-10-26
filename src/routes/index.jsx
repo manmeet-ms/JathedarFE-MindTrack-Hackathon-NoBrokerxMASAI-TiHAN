@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { usePageMeta } from "@/contexts/PageMetaContext";
-import { IconRotate2 } from "@tabler/icons-react";
+import { IconAbacus, IconRotate2 } from "@tabler/icons-react";
 import { createFileRoute, useLocation } from "@tanstack/react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -168,17 +168,18 @@ function RouteComponent() {
 
                 {/* <NegativesDiscordCards/> */}
 
+
                 <Card>
-                  <CardHeader>
-                    <CardTitle>Diary Outputs</CardTitle>
-                    <CardDescription>Negative Consequences</CardDescription>
-                  </CardHeader>
+                  
                   <CardContent>
-                    <p>Card Content</p>
+                   <section className="flex gap-2 flex-col items-center justify-center" >
+<IconAbacus className="text-muted-foreground/80 "/>
+
+  <h1 className="text-xl font-semibold">Diary Writing</h1>
+<p className="text-muted-foreground/80" >Introducing soon...</p>
+</section>
                   </CardContent>
-                  <CardFooter>
-                    <p>Card Footer</p>
-                  </CardFooter>
+                  
                 </Card>
               </div>
             </div>

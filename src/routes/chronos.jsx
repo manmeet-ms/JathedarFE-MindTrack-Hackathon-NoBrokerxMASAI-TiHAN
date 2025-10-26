@@ -284,7 +284,7 @@ function RouteComponent() {
                                   {rankObject.name}
                                 </span>
                               </h2>
-                              <h1 className="title-font text-foreground text-xl font-medium">{item.title}</h1>
+                              <h1 className="title-font text-foreground text-xl font-medium capitalize">{item.title}</h1>
                               <p className="w-56 truncate text-muted-foreground text-sm">{item.quoteFlashingAllowed ? randomQuote : item.description}</p>
     
                               {/* <div className="flex cursor-pointer items-center justify-center gap-2 rounded-full border px-3 py-2"

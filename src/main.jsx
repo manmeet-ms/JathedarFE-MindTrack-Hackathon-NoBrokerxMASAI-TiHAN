@@ -68,7 +68,7 @@ const router = createRouter({
 //     element: <Landing />,
 //   },
 //   { path: "*", element: <NotFound404 /> },
-// ]);
+// ]); 
 function AppInit() {
   const dispatch = useDispatch();
   // run auth check once on app init
